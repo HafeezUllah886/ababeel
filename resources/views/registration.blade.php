@@ -56,7 +56,7 @@
                                     <p>Application form for (ILF) Membership</p>
 
                                 </div>
-                                <form action="{{url('/')}}" method="post">
+                                <form action="{{url('/registration/store')}}" method="post" enctype="multipart/form-data">
                                     @csrf
 
                                 <div class="col-md-12">
@@ -254,13 +254,11 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
 
-                                                <button class="btn btn-success">Apply for Registration</button>
+                                                <button type="submit" class="btn btn-success">Apply for Registration</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
 
                             </form>
                                {{--  <div class="col-12 mb-4">
