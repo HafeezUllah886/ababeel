@@ -131,8 +131,8 @@
                                     <div class="row mt-2">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="barRegn">Bar Registration Number</label>
-                                                <input type="text" class="form-control" id="barRegn" name="barRegn">
+                                                <label for="barReg">Bar Registration Number</label>
+                                                <input type="text" class="form-control" id="barReg" name="barReg">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -151,8 +151,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="office">Office Address</label>
-                                                <input type="text" class="form-control" id="office" name="office">
+                                                <label for="addr">Office Address</label>
+                                                <input type="text" class="form-control" id="addr" name="addr">
                                             </div>
                                         </div>
                                     </div>
@@ -167,8 +167,8 @@
                                                 <tr>
                                                     <td>
                                                         <div class="form-group">
-                                                            <label for="pic">Passport Size Image</label>
-                                                            <input type="file" id="pic" name="pic" class="form-control" accept="image/*">
+                                                            <label for="photo">Passport Size Image</label>
+                                                            <input type="file" id="photo" name="photo" class="form-control" accept="image/*">
                                                         </div>
                                                     </td>
                                                     <td>

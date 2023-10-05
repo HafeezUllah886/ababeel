@@ -13,6 +13,26 @@ return new class extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('fname');
+            $table->string('cnic');
+            $table->string('gender');
+            $table->string('dist');
+            $table->date('dob');
+            $table->date('lc')->nullable();
+            $table->date('hc')->nullable();
+            $table->date('sc')->nullable();
+            $table->string('barReg');
+            $table->string('phone');
+            $table->string('email');
+            $table->text('addr');
+            $table->string('photo')->nullable();
+            $table->string('cnicF')->nullable();
+            $table->string('cnicB')->nullable();
+            $table->string('bCard')->nullable();
+            $table->string('licenses')->nullable();
+            $table->string('status');
+            $table->string('date');
             $table->timestamps();
         });
     }
