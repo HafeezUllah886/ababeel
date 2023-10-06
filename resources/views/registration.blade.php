@@ -172,7 +172,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                    <img id="picPreview" src="#" alt="Image Preview" style="display: none; max-width: 150px; max-height: 150px;">
+                                                    <img id="photoPreview" src="#" alt="Image Preview" style="display: none; max-width: 150px; max-height: 150px;">
                                                     </td>
                                                     <td>
                                                        * Fresh Photograph with blue background
@@ -212,12 +212,12 @@
                                                 <tr>
                                                     <td>
                                                         <div class="form-group">
-                                                            <label for="bcc">Bar Council Card</label>
-                                                            <input type="file" id="bcc" name="bcc" class="form-control" accept="image/*">
+                                                            <label for="bCard">Bar Council Card</label>
+                                                            <input type="file" id="bCard" name="bCard" class="form-control" accept="image/*">
                                                         </div>
                                                     </td>
                                                     <td>
-                                                    <img id="bccPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
+                                                    <img id="bCardPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
                                                     </td>
                                                     <td>
                                                        * Must be a clear/readable image
@@ -328,7 +328,7 @@
 <script>
     $(document).ready(function () {
     // Listen for changes in the file input
-    $("#pic").change(function () {
+    $("#photo").change(function () {
         // Get the selected file
         var file = this.files[0];
         if (file) {
@@ -337,9 +337,9 @@
             // Set a function to run when the file is loaded
             reader.onload = function (e) {
                 // Set the source of the image element to the Data URL
-                $("#picPreview").attr("src", e.target.result);
+                $("#photoPreview").attr("src", e.target.result);
                 // Display the image element
-                $("#picPreview").show();
+                $("#photoPreview").show();
             };
             // Read the file as a Data URL
             reader.readAsDataURL(file);
@@ -381,7 +381,7 @@
             reader.readAsDataURL(file);
         }
     });
-    $("#bcc").change(function () {
+    $("#bCard").change(function () {
         // Get the selected file
         var file = this.files[0];
         if (file) {
@@ -390,9 +390,9 @@
             // Set a function to run when the file is loaded
             reader.onload = function (e) {
                 // Set the source of the image element to the Data URL
-                $("#bccPreview").attr("src", e.target.result);
+                $("#bCardPreview").attr("src", e.target.result);
                 // Display the image element
-                $("#bccPreview").show();
+                $("#bCardPreview").show();
             };
             // Read the file as a Data URL
             reader.readAsDataURL(file);
