@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class registration extends Model
 {
     use HasFactory;
-    protected $fillable = [
+    protected $guarded = [];
+    /* protected $fillable = [
         'name',
         'fname',
         'cnic',
@@ -27,5 +28,5 @@ class registration extends Model
         'dist',
         'status',
         'date',
-    ];
+    ]; */
 }

@@ -5,10 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App;
-use App\Models\accounts;
-use App\Models\activityLog;
-use App\Models\inventory;
-use App\Models\transactions;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -34,14 +30,13 @@ class authController extends Controller
 
         if(Auth::attempt($req->only('userName', 'password'))){
             $req->session()->regenerate();
-            save_activity('Signed In');
             return redirect()->intended('/dashboard');
         }
         return redirect()->back()->with('error', 'Invalid Username or Password');
     }
 
     public function logout(){
-        save_activity('Signed Out');
+
         Auth::logout();
         request()->session()->regenerate();
         App::setLocale('en');
@@ -53,17 +48,7 @@ class authController extends Controller
         App::setLocale($get_lang);
         Session::put('locale',$get_lang);
 
-
-        $topSellingProducts = inventory::with('product')
-        ->select('product_id', DB::raw('SUM(db) as total_sold'))
-        ->groupBy('product_id')
-        ->orderBy('total_sold', 'desc')
-        ->take(5) // Change the number as per your requirement
-        ->get();
-
-        $transactions = transactions::with('account')->latest()->take(10)->get();
-
-        return view('dashboard.dashboard')->with(compact('topSellingProducts', 'transactions'));
+        return view('dashboard.dashboard');
     }
 
    public function users(){

@@ -20,7 +20,7 @@ class RegistrationController extends Controller
             $image = $req->file('photo');
             $filename = $req->cnic.".".$image->getClientOriginalExtension();
             $image_path = public_path('/files/photos/'.$filename);
-            $image_path1 = '/files/photos/'.$filename;
+            $photo_path1 = '/files/photos/'.$filename;
             $img = Image::make($image);
             $img->save($image_path,100);
         }
@@ -44,6 +44,26 @@ class RegistrationController extends Controller
             $img = Image::make($image);
             $img->save($image_path,100);
         }
+        $bCard_path1 = null;
+        if($req->hasFile('bCard')){
+
+            $image = $req->file('bCard');
+            $filename = $req->cnic.".".$image->getClientOriginalExtension();
+            $image_path = public_path('/files/bCard/'.$filename);
+            $bCard_path1 = '/files/bCard/'.$filename;
+            $img = Image::make($image);
+            $img->save($image_path,100);
+        }
+        $license_path1 = null;
+        if ($req->hasFile('license')) {
+            $pdf = $req->file('license');
+            $filename = $req->cnic . "." . $pdf->getClientOriginalExtension(); // Use the extension of the uploaded PDF
+            $pdf_path = public_path('/files/license/' . $filename);
+            $license_path1 = '/files/license/' . $filename;
+            
+            // Instead of using an image manipulation library, move the PDF file to the specified location.
+            $pdf->move(public_path('/files/license/'), $filename);
+        }
         registration::create(
             [
                 'name' => $req->name,
@@ -58,10 +78,14 @@ class RegistrationController extends Controller
                 'barReg' => $req->barReg,
                 'phone' => $req->phone,
                 'email' => $req->email,
-                'office' => $req->office,
+                'addr' => $req->addr,
                 'photo' => $photo_path1,
                 'cnicF' => $cnicF_path1,
                 'cnicB' => $cnicB_path1,
+                'bCard' => $bCard_path1,
+                'licenses' => $license_path1,
+                'status' => "Pending",
+                'date' => now(),
 
             ]
         );
