@@ -50,11 +50,11 @@
     <div class="header-container container-xxl">
         <header class="header navbar navbar-expand-sm expand-header">
 
-            <ul class="navbar-item theme-brand flex-row  text-center">
+            {{-- <ul class="navbar-item theme-brand flex-row  text-center">
                 <li class="nav-item theme-text">
                     <a href="{{ url('/dashboard') }}" class="nav-link"> SITS </a>
                 </li>
-            </ul>
+            </ul> --}}
 
             <div class="d-none d-md-block">
                    <h5 class="mb-0 text-white"> {{ getSettings()->proName}}</h5>
@@ -127,11 +127,11 @@
     <!--  BEGIN MAIN CONTAINER  -->
     <div class="main-container sidebar-closed sbar-open" id="container">
 
-        <div class="overlay"></div>
-        <div class="search-overlay"></div>
+        {{-- <div class="overlay"></div>
+        <div class="search-overlay"></div> --}}
 
         <!--  BEGIN SIDEBAR  -->
-        <div class="sidebar-wrapper sidebar-theme">
+       {{--  <div class="sidebar-wrapper sidebar-theme">
 
             <nav id="sidebar">
 
@@ -294,7 +294,7 @@
 
             </nav>
 
-        </div>
+        </div> --}}
         <!--  END SIDEBAR  -->
 
         <!--  BEGIN CONTENT AREA  -->
@@ -307,15 +307,15 @@
                     <div class="secondary-nav">
                         <div class="breadcrumbs-container" data-page-heading="Analytics">
                             <header class="header navbar navbar-expand-sm">
-                                <a href="javascript:void(0);" class="btn-toggle sidebarCollapse" data-placement="bottom">
+                                {{-- <a href="javascript:void(0);" class="btn-toggle sidebarCollapse" data-placement="bottom">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-                                </a>
+                                </a> --}}
                                 <div class="d-flex breadcrumb-content">
-                                    <div class="page-header">
+                                    <div class="page-header" style="margin-left:20px;">
 
                                         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                                             <ol class="breadcrumb">
-                                                <li class="breadcrumb-item"> {{ __('lang.'.$page_dir) }} </li>
+                                                <li class="breadcrumb-item">{{$page_dir  }}</li>
                                             </ol>
                                         </nav>
 

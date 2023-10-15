@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App;
+use App\Models\registration;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -44,11 +45,11 @@ class authController extends Controller
         return redirect('/');
     }
     public function dashboard(){
-        $get_lang = auth()->user()->lang;
-        App::setLocale($get_lang);
-        Session::put('locale',$get_lang);
+       $pending = registration::where('status', 'Pending')->count();
+       $approved = registration::where('status', 'Approved')->count();
+       $rejected = registration::where('status', 'Rejected')->count();
 
-        return view('dashboard.dashboard');
+        return view('dashboard.dashboard', compact('pending', 'approved', 'rejected'));
     }
 
    public function users(){

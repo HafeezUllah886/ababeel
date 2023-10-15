@@ -60,7 +60,7 @@ class RegistrationController extends Controller
             $filename = $req->cnic . "." . $pdf->getClientOriginalExtension(); // Use the extension of the uploaded PDF
             $pdf_path = public_path('/files/license/' . $filename);
             $license_path1 = '/files/license/' . $filename;
-            
+
             // Instead of using an image manipulation library, move the PDF file to the specified location.
             $pdf->move(public_path('/files/license/'), $filename);
         }
@@ -89,5 +89,29 @@ class RegistrationController extends Controller
 
             ]
         );
+
+        return back()->with('success', "Registration form submitted for approval");
+    }
+
+    public function list($type){
+        $registrations = registration::where('status', $type)->orderBy('updated_at', 'desc')->get();
+
+        return view('registrations.list', compact('registrations', 'type'));
+    }
+
+    public function view($id)
+    {
+        $reg = registration::find($id);
+
+        return view('registrations.view', compact('reg'));
+    }
+
+    public function changeStatus($id, $status)
+    {
+        $reg = registration::find($id);
+        $reg->status = $status;
+        $reg->save();
+
+        return redirect("/registraions/list/".$status)->with('success', "Status Changed");
     }
 }

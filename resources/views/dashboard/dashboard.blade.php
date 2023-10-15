@@ -24,122 +24,75 @@
 
     <div class="col-12">
         <div class="row">
-            @can('View Dashboard Monthly Expense')
+
                  <!-- Monthly Expenses -->
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
-                    <div class="widget widget-card-four">
-                        <div class="widget-content">
-                            <div class="w-header">
-                                <div class="w-info">
-                                    <h6 class="value">{{__('lang.MonthlyExpenses')}}</h6>
+                    <a href="{{ url('/registraions/list/Pending') }}">
+                        <div class="widget widget-card-four">
+                            <div class="widget-content">
+                                <div class="w-header">
+                                    <div class="w-info">
+                                        <h6 class="value">Pending</h6>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="w-content">
-                                <div class="w-info">
+                                <div class="w-content">
+                                    <div class="w-info">
+                                        <h3>{{ $pending }}</h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-            @endcan
-            @can('View Dashboard Customer Dues')
+
                 <!-- Customer Dues -->
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                    <a href="{{ url('/registraions/list/Approved') }}">
                     <div class="widget widget-card-four">
                         <div class="widget-content">
                             <div class="w-header">
                                 <div class="w-info">
-                                    <h6 class="value">{{__('lang.CustomerDues')}}</h6>
+                                    <h6 class="value">Approved</h6>
                                 </div>
                             </div>
                             <div class="w-content">
                                 <div class="w-info">
+                                    <h3>{{ $approved }}</h3>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    </a>
                 </div>
-            @endcan
-            @can('View Dashboard Supplier Dues')
+
                  <!-- Supplier Dues -->
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                    <a href="{{ url('/registraions/list/Rejected') }}">
                     <div class="widget widget-card-four">
                         <div class="widget-content">
                             <div class="w-header">
                                 <div class="w-info">
-                                    <h6 class="value">{{__('lang.SupplierDues')}}</h6>
+                                    <h6 class="value">Rejected</h6>
                                 </div>
                             </div>
                             <div class="w-content">
                                 <div class="w-info">
+                                    <h3>{{ $rejected }}</h3>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    </a>
                 </div>
-            @endcan
-            @can('View Dashboard Monthly Sale')
-                <!-- Monthly Sale -->
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
-                    <div class="widget widget-card-four">
-                        <div class="widget-content">
-                            <div class="w-header">
-                                <div class="w-info">
-                                    <h6 class="value">{{__('lang.MonthlySale')}}</h6>
-                                </div>
-                            </div>
-                            <div class="w-content">
-                                <div class="w-info">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endcan
-            @can('View Dashboard Total Sale')
-                <!-- Total Cash -->
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
-                    <div class="widget widget-card-four">
-                        <div class="widget-content">
-                            <div class="w-header">
-                                <div class="w-info">
-                                    <h6 class="value">{{__('lang.TotalCash')}}</h6>
-                                </div>
-                            </div>
-                            <div class="w-content">
-                                <div class="w-info">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endcan
-            @can('View Dashboard Total Bank')
-                 <!-- Total Bank -->
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
-                    <div class="widget widget-card-four">
-                        <div class="widget-content">
-                            <div class="w-header">
-                                <div class="w-info">
-                                    <h6 class="value">{{__('lang.TotalBank')}}</h6>
-                                </div>
-                            </div>
-                            <div class="w-content">
-                                <div class="w-info">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endcan
-             
+
+
         </div>
-         
+
         <div class="row layout-top-spacing">
-           
-          
-         
-            
+
+
+
+
         </div>
     </div>
 
@@ -152,5 +105,5 @@
     <script src="{{ asset('assets/src/plugins/src/apex/apexcharts.min.js') }}"></script>
     {{-- <script src="{{ asset('assets/src/assets/js/dashboard/dash_1.js') }}"></script> --}}
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-  
+
 @endpush
