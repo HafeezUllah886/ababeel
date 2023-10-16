@@ -10,7 +10,7 @@
     <!-- CONTENT AREA -->
 <div class="row layout-top-spacing">
 
-    @can('Change Basic Settings')
+ 
     <div class="col-12">
         <div class="card">
             <div class="card-body">
@@ -73,9 +73,7 @@
             </div>
         </div>
     </div>
-    @endcan
-
-@can('Change Profile Settings')
+  
 <div class="col-12 mt-3">
     <div class="card">
         <div class="card-body">
@@ -105,8 +103,7 @@
         </div>
     </div>
 </div>
-@endcan
-@can('Change Own Password')
+
 <div class="col-12 mt-3">
     <div class="card">
         <div class="card-body">
@@ -143,30 +140,8 @@
         </div>
     </div>
 </div>
-@endcan
-    <div class="col-12 mt-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="card-title">
-                    <h5>{{ __('lang.LanguageSettings') }}</h5>
-                </div>
-                <form action="{{ url('settings/setLanguage') }}" method="post">
-                    @csrf
-                    <div class="form-group">
-                        <label for="lang">{{ __('lang.SelectLanguage') }}</label>
-                        <select name="lang" class="form-control">
-                            <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : ''}}>English</option>
-                            <option value="ur" {{ session()->get('locale') == 'ur' ? 'selected' : ''}}>اردو</option>
-                        </select>
 
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary align-self-end mt-3">{{ __('lang.ChangeLanguage') }}</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+   
 
 </div>
 <!-- CONTENT AREA -->

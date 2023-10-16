@@ -23,13 +23,7 @@
                 <div class="card-title d-flex justify-content-between">
                     <h5>{{__('lang.Users')}}</h5>
                     <div class="d-flex justify-content-end">
-                        @can('View Roles')
-                            <a href="{{ url('/roles') }}" class="btn btn-info" style="margin-right:10px;">Roles</a>
-                        @endcan
-                        @can('Add User')
                         <a href="{{ url('/user/add') }}" class="btn btn-success">Add User</a>
-                        @endcan
-                       
                     </div>
 
                 </div>

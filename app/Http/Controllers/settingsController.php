@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Helper\myHelper as HelperMyHelper;
 use App\Http\Controllers\Controller;
-use App\Models\activityLog;
 use App\Models\settings;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -57,7 +56,7 @@ class settingsController extends Controller
             $save->addr_line_three = $req->addr_line_three;
             $save->save();
         }
-        save_activity('Basic Settings Changed"');
+      
         return redirect()->back()->with('msg', 'Settings Saved');
     }
 
@@ -80,7 +79,7 @@ class settingsController extends Controller
         $user->email = $req->email;
         $user->save();
 
-        save_activity('Changed User Name / Email');
+        
        return redirect('/logout')->with('msg', "User Name / Email Updated");
     }
 
@@ -105,37 +104,12 @@ class settingsController extends Controller
         {
             $user->password = hash::make($req->newPassword);
             $user->save();
-            save_activity('Changed own password');
+           
             return redirect()->back()->with('msg', 'Password changed');
                 }
         else{
             return redirect()->back()->with('error', "Wrong current password");
         }
 
-    }
-
-    public function activity(){
-        $activities = activityLog::orderBy('id', 'desc')->get();
-        return view('dashboard.activity')->with(compact('activities'));
-    }
-
-    public function clear_log(){
-        $delete = activityLog::truncate();
-        return redirect()->back()->with('msg', "Activities Cleared");
-    }
-
-    public function delete_log($id){
-        activityLog::find($id)->delete();
-        return redirect()->back()->with('msg', "Activity Deleted");
-    }
-
-    public function changeLanguage(request $req){
-        App::setLocale($req->lang);
-        Session::put('locale',$req->lang);
-        $user = User::where('id',auth()->user()->id)->first();
-        $user->lang = $req->lang;
-        $user->save();
-
-        return redirect()->back()->with('msg', 'Language Changed');
     }
 }
