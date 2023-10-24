@@ -15,7 +15,7 @@ class settingsSeeder extends Seeder
     {
         $settings = [
             [
-                'proName' => "Carpet & Rugs",
+                'proName' => "Ababeel",
                 'phone' => '03123456789',
                 'mobile' => '03123456789',
                 'addr_line_one' => 'Shop No. 123',

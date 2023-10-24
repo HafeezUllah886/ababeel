@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('bCard')->nullable();
             $table->string('licenses')->nullable();
             $table->string('status');
+            $table->string('isFinal');
             $table->string('date');
             $table->timestamps();
         });

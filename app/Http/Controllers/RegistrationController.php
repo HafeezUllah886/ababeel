@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\registration;
+use App\Models\tracking;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Image;
@@ -65,7 +66,7 @@ class RegistrationController extends Controller
             // Instead of using an image manipulation library, move the PDF file to the specified location.
             $pdf->move(public_path('/files/license/'), $filename);
         }
-        registration::create(
+        $reg = registration::create(
             [
                 'name' => $req->name,
                 'fname' => $req->fname,
@@ -85,26 +86,37 @@ class RegistrationController extends Controller
                 'cnicB' => $cnicB_path1,
                 'bCard' => $bCard_path1,
                 'licenses' => $license_path1,
+                'isFinal' => "no",
                 'status' => "Pending",
                 'date' => now(),
-
             ]
         );
+
+        tracking::create(
+            [
+                'appID' => $reg->id,
+                'from' => 1,
+                'to' => 2,
+                'date' => now(),
+                'notes' => "New Application Received",
+            ]
+        );
+
 
         return back()->with('success', "Registration form submitted for approval");
     }
 
     public function list($type){
         $registrations = registration::where('status', $type)->orderBy('updated_at', 'desc')->get();
-        $users = User::where('id', '!=', auth()->user()->id)->get();
+        $users = User::where('id', '!=', auth()->user()->id)->where('role', '!=', 'System')->get();
         return view('registrations.list', compact('registrations', 'type', 'users'));
     }
 
     public function view($id)
     {
         $reg = registration::find($id);
-
-        return view('registrations.view', compact('reg'));
+        $trackings = tracking::where('appID', $id)->orderBy('id','desc')->get();
+        return view('registrations.view', compact('reg', 'trackings'));
     }
 
     public function changeStatus($id, $status)

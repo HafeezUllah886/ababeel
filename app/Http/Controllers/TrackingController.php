@@ -11,7 +11,7 @@ class TrackingController extends Controller
     public function forwarding(request $req){
 
         $check = tracking::where('appID', $req->id)->orderBy('id', "desc")->first();
-        if($check->to == $req->to){
+        if($check->to == $req->user){
             return back()->with('error', "Aleardy forwarded to the same user");
         }
         tracking::create(

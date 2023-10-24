@@ -54,7 +54,7 @@
                                         <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Rejected" class="btn btn-danger btn-sm">Rejected</a><br>
 
                                         @elseif($reg->status == "Rejected")
-                                        <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Approve" class="btn btn-success btn-sm">Approved</a><br>
+                                        <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Approved" class="btn btn-success btn-sm">Approved</a><br>
                                         @elseif($reg->status == "Approved")
 
                                         <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Rejected" class="btn btn-danger btn-sm">Rejected</a><br>

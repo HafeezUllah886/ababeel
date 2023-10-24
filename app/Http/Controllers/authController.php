@@ -53,7 +53,7 @@ class authController extends Controller
     }
 
    public function users(){
-    $users = User::where('id', '!=', auth()->user()->id)->get();
+    $users = User::where('id', '!=', auth()->user()->id)->where('role', '!=', "System")->get();
     return view('auth.users')->with(compact('users'));
    }
 

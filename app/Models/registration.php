@@ -10,8 +10,8 @@ class registration extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function tracking()
+    public function track()
     {
-        return $this->hasMany(tracking::class, 'id');
+        return $this->hasMany(tracking::class, 'appID', 'id');
     }
 }

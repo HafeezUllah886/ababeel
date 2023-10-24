@@ -15,11 +15,11 @@ class tracking extends Model
         return $this->belongsTo(registration::class, 'appID', 'id');
     }
 
-    public function from()
+    public function from_user()
     {
         return $this->belongsTo(User::class, 'from', 'id');
     }
-    public function to()
+    public function to_user()
     {
         return $this->belongsTo(User::class, 'to', 'id');
     }

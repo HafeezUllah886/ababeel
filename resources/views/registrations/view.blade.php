@@ -104,6 +104,39 @@
             </div>
         </div>
     </div>
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header">
+                    <h3>Application Tracking</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <th>#</th>
+                            <th>Forwarded By</th>
+                            <th>Forwarded To</th>
+                            <th>Date</th>
+                            <th>Notes</th>
+                        </thead>
+                        <tbody>
+
+                            @foreach ($trackings as $tracking)
+                                <tr>
+                                    <td>{{ $tracking->id }}</td>
+                                    <td>{{ $tracking->from_user->username }}</td>
+                                    <td>{{ $tracking->to_user->username }}</td>
+                                    <td>{{ date('d M Y', strtotime($tracking->date)) }}</td>
+                                    <td>{{ $tracking->notes }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="modal fade" id="cnic" tabindex="-1" aria-labelledby="addPaymentModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md"> <!-- Add "modal-dialog-white" class -->
