@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\registration;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Image;
 class RegistrationController extends Controller
@@ -95,8 +96,8 @@ class RegistrationController extends Controller
 
     public function list($type){
         $registrations = registration::where('status', $type)->orderBy('updated_at', 'desc')->get();
-
-        return view('registrations.list', compact('registrations', 'type'));
+        $users = User::where('id', '!=', auth()->user()->id)->get();
+        return view('registrations.list', compact('registrations', 'type', 'users'));
     }
 
     public function view($id)

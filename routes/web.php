@@ -10,9 +10,11 @@ use App\Http\Controllers\resetPasswordController;
 use App\Http\Controllers\rolesController;
 use App\Http\Controllers\settingsController;
 use App\Http\Controllers\stockController;
+use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\WarehousesController;
 use App\Mail\restorePasswordMail;
 use App\Models\inflow;
+use App\Models\tracking;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -80,5 +82,6 @@ Route::middleware('auth')->group(function (){
     Route::get('/registraions/list/{type}', [RegistrationController::class, 'list']);
     Route::get('/registration/view/{id}', [RegistrationController::class, 'view']);
     Route::get('/registraion/changeStatus/{id}/{status}', [RegistrationController::class, 'changeStatus']);
+    Route::post('/app/forwarding/', [TrackingController::class, 'forwarding']);
 
 });

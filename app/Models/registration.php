@@ -9,24 +9,9 @@ class registration extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    /* protected $fillable = [
-        'name',
-        'fname',
-        'cnic',
-        'phone',
-        'gender',
-        'addr',
-        'barReg',
-        'email',
-        'dob',
-        'lc',
-        'hc',
-        'cnicF',
-        'cnicB',
-        'bCard',
-        'Licenses',
-        'dist',
-        'status',
-        'date',
-    ]; */
+
+    public function tracking()
+    {
+        return $this->hasMany(tracking::class, 'id');
+    }
 }

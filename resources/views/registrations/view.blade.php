@@ -6,7 +6,6 @@
 @endphp
 @push('extra_css')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/src/table/datatable/datatables.css')}}">
-
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/css/light/table/datatable/dt-global_style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/css/dark/table/datatable/dt-global_style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/src/plugins/src/glightbox/glightbox.min.css')}}">
@@ -95,9 +94,10 @@
                             </tr>
                         </table>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Pending" class="btn btn-warning" style="margin-left: 5px">Pending</a>
-                            <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Rejected" class="btn btn-danger" style="margin-left: 5px">Reject</a>
-                            <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Approved" class="btn btn-success" style="margin-left: 5px">Approve</a>
+                            <a href="{{ url('/dashboard') }}" class="btn btn-dark" style="margin-left: 5px">Dashboard</a>
+                            @if($reg->status != 'Pending')
+                                <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Finalized" class="btn btn-warning" id="final" style="margin-left: 5px">Finalized</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -155,8 +155,33 @@
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{ asset('/assets/src/plugins/src/glightbox/glightbox.min.js')}}"></script>
 <script src="{{ asset('/assets/src/plugins/src/glightbox/custom-glightbox.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.32/sweetalert2.all.min.js"></script>
+
 <!-- END PAGE LEVEL SCRIPTS -->
     <script>
+
+                // Add a click event listener to the anchor tag
+// Add a click event listener to the anchor tag
+$("#final").click(function(e) {
+  // Prevent the default link behavior
+  e.preventDefault();
+
+  // Display a confirmation popup using SweetAlert
+  Swal.fire({
+    title: "Are you sure?",
+    text: "This action cannot be undone.",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Yes, proceed!",
+    closeOnConfirm: false
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Redirect the user to the link
+      window.location.href = $(e.target).attr("href");
+    }
+  });
+});
         $('#zero-config').DataTable({
             "dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>" +
         "<'table-responsive'tr>" +
@@ -173,5 +198,7 @@
             "pageLength": 10,
             "ordering": false,
         });
+
+
     </script>
 @endpush

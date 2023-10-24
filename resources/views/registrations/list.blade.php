@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="resposive-table">
-                    <table id="zero-config" class="table dt-table-hover" style="width:100%">
+                    <table id="zero-config" class="table table-bordered table-striped table-hover" style="width:100%">
                         <thead>
                             <th>#</th>
                             <th>Picture</th>
@@ -43,18 +43,75 @@
                             @foreach ($registrations as $reg)
                                 <tr>
                                     <td> {{ $reg->id }}</td>
-                                    <td> <img src="{{ asset($reg->photo) }}" style="width:50px;height:60px;" alt=""></td>
+                                    <td> <img src="{{ asset($reg->photo) }}" style="width:70px;height:100px;" alt=""></td>
                                     <td> {{ $reg->name }}</td>
                                     <td> {{ $reg->fname }}</td>
                                     <td> {{ $reg->cnic }}</td>
                                     <td> {{ date('d M Y', strtotime($reg->date)) }}</td>
                                     <td>
-                                        @can('Edit User')
-                                            <a href="{{ url('/registration/view/') }}/{{ $reg->id }}" class="btn btn-primary">View</a>
-                                        @endcan
+                                        @if($reg->status == 'Pending')
+                                        <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Approve" class="btn btn-success btn-sm">Approved</a><br>
+                                        <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Rejected" class="btn btn-danger btn-sm">Rejected</a><br>
 
+                                        @elseif($reg->status == "Rejected")
+                                        <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Approve" class="btn btn-success btn-sm">Approved</a><br>
+                                        @elseif($reg->status == "Approved")
+
+                                        <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Rejected" class="btn btn-danger btn-sm">Rejected</a><br>
+                                        @endif
+
+                                        <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Pending" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#pay_{{ $reg->id }}">Forward</a><br>
+                                        <a href="{{ url('/registration/view/') }}/{{ $reg->id }}" class="btn btn-info btn-sm">View</a>
+                                        {{-- <div class="dropdown">
+                                            <button class="btn dropdown-toggle form-select" type="button" id="dropdownMenuButton_{{ $reg->id }}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Actions
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton_{{ $reg->id }}">
+                                                <a class="dropdown-item" href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Pending">
+                                                    Mark as Pending
+                                                </a>
+                                                <a class="dropdown-item" href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Rejected">
+                                                    Mark as Rejected
+                                                </a>
+                                                <a class="dropdown-item" href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Approved">
+                                                    Mark as Approved
+                                                </a>
+                                            </div>
+                                        </div> --}}
                                     </td>
                                 </tr>
+                                <div class="modal fade" id="pay_{{ $reg->id }}" tabindex="-1" aria-labelledby="payModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-md"> <!-- Add "modal-dialog-white" class -->
+                                        <div class="modal-content" style="background-color: white; color: #000000"> <!-- Add "modal-content-white" class -->
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="payModalLabel" style="color: black; font-weight: bold">Forward Appication </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-horizontal" action="{{ url('/app/forwarding/') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $reg->id }}">
+                                                    <div class="form-group">
+                                                        <label for="user">Forward to</label>
+                                                        <select name="user" id="user" class="form-select">
+                                                            @foreach ($users as $user)
+                                                                <option value="{{ $user->id }}" {{ old('user') == $user->id ? 'selected' : '' }}>{{ $user->username }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="notes">Notes</label>
+                                                       <textarea name="notes" id="notes" class="form-control" cols="30" rows="10"></textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <input class="btn btn-primary" type="submit" value="Forward">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
                         </tbody>
                     </table>
