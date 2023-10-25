@@ -49,7 +49,7 @@
                                     <td> {{ $reg->cnic }}</td>
                                     <td> {{ date('d M Y', strtotime($reg->date)) }}</td>
                                     <td>
-                                        @if($reg->isFinal == 'no')
+                                        @if($reg->isFinal == 'no' && $reg->assigned == auth()->user()->id)
                                             @if($reg->status == 'Pending')
                                             <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Approved" class="btn btn-success btn-sm">Approve</a><br>
                                             <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Rejected" class="btn btn-danger btn-sm">Reject</a><br>
