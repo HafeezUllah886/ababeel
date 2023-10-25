@@ -37,7 +37,7 @@
                                 @enderror
                             </div>
                         </div>
-                        @can('Change Others Password')
+
                         <div class="col-12">
                             <div class="form-group mt-3">
                                 <label for="password">Change Password</label>
@@ -47,7 +47,15 @@
                                 @enderror
                             </div>
                         </div>
-                        @endcan
+                        <div class="col-12">
+                            <div class="form-group mt-3">
+                                <label for="role">Role</label>
+                                <select name="role" class="form-select" id="role">
+                                    <option value="Member" {{ $user->user_role == "Member" ? "Selected" : "" }}>Member</option>
+                                    <option value="Admin" {{ $user->user_role == "Admin" ? "Selected" : "" }}>Admin</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                    <div class="row mt-3">
                     <div class="col-12 d-flex justify-content-end">
@@ -57,7 +65,7 @@
                 </form>
             </div>
         </div>
-      
+
     </div>
 
 </div>

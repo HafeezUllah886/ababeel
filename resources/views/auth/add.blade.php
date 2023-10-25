@@ -46,6 +46,15 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-12">
+                            <div class="form-group mt-3">
+                                <label for="role">Role</label>
+                                <select name="role" class="form-select" id="role">
+                                    <option value="Member">Member</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+                            </div>
+                        </div>
 
                     </div>
                    <div class="row mt-3">

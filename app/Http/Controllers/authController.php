@@ -61,7 +61,7 @@ class authController extends Controller
     }
 
    public function users(){
-    $users = User::where('id', '!=', auth()->user()->id)->where('role', '!=', "System")->get();
+    $users = User::where('id', '!=', auth()->user()->id)->where('user_role', '!=', "System")->get();
     return view('auth.users')->with(compact('users'));
    }
 
@@ -80,18 +80,18 @@ class authController extends Controller
             'username' => $req->name,
             'email' => $req->email,
             'password' => Hash::make($req->password),
+            'user_role' => $req->role,
             'lang' => "eng"
         ]
     );
 
-    return redirect('/user/edit/'.$user->id)->with('msg', 'New User Created');
+    return redirect('/users')->with('msg', 'New User Created');
    }
 
    public function edit($id){
     $user = User::find($id);
-    $roles = Role::all();
-    $permissions = Permission::all();
-    return view('auth.edit')->with(compact('user', 'roles', 'permissions'));
+
+    return view('auth.edit')->with(compact('user'));
    }
 
    public function update(request $req, $id){
@@ -103,6 +103,7 @@ class authController extends Controller
     $user = User::find($id);
     $user->username = $req->name;
     $user->email = $req->email;
+    $user->user_role = $req->role;
     if($req->has('password')){
         $user->password = Hash::make($req->password);
     }
