@@ -20,7 +20,7 @@ class usersSeeder extends Seeder
                 'email' => 'system@email.com',
                 'password' => Hash::make('unknownsystem'),
                 'lang' => 'en',
-                'role' => 'System',
+                'user_role' => 'System',
             ]
         );
         $user = User::create(
@@ -29,7 +29,7 @@ class usersSeeder extends Seeder
                 'email' => 'Admin@email.com',
                 'password' => Hash::make('admin'),
                 'lang' => 'en',
-                'role' => 'Admin',
+                'user_role' => 'Admin',
             ]
         );
 
@@ -39,7 +39,7 @@ class usersSeeder extends Seeder
                 'email' => 'member@email.com',
                 'password' => Hash::make('member'),
                 'lang' => 'en',
-                'role' => 'Members'
+                'user_role' => 'Member'
             ]
         );
     }

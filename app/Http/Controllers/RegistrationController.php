@@ -16,6 +16,11 @@ class RegistrationController extends Controller
 
     public function store(request $req)
     {
+        $check = registration::where("cnic", $req->cnic)->count();
+        if($check > 0)
+        {
+            return back()->with('error', "Application against this cnic aleardy existing");
+        }
         $photo_path1 = null;
         if($req->hasFile('photo')){
 
@@ -87,6 +92,7 @@ class RegistrationController extends Controller
                 'bCard' => $bCard_path1,
                 'licenses' => $license_path1,
                 'isFinal' => "no",
+                'assigned' => 2,
                 'status' => "Pending",
                 'date' => now(),
             ]
@@ -103,12 +109,28 @@ class RegistrationController extends Controller
         );
 
 
-        return back()->with('success', "Registration form submitted for approval");
+        return back()->with('msg', "Registration form submitted for approval");
     }
 
     public function list($type){
-        $registrations = registration::where('status', $type)->orderBy('updated_at', 'desc')->get();
-        $users = User::where('id', '!=', auth()->user()->id)->where('role', '!=', 'System')->get();
+        $final = "no";
+        $registrations = registration::where('status', $type)->where('isFinal', $final)->where('assigned', auth()->user()->id)->get();
+        if($type == 'final')
+        {
+            $final = "yes";
+            $registrations = registration::where('isFinal', $final)->where('assigned', auth()->user()->id)->get();
+        }
+        
+       
+        if(auth()->user()->user_role == "Admin")
+        {
+            $registrations = registration::where('status', $type)->where('isFinal', $final)->orderBy('updated_at', 'desc')->get();  
+            if($final == "yes")
+            {
+                $registrations = registration::where('isFinal', $final)->orderBy('updated_at', 'desc')->get();  
+            }
+        }
+        $users = User::where('id', '!=', auth()->user()->id)->where('user_role', '!=', 'System')->get();
         return view('registrations.list', compact('registrations', 'type', 'users'));
     }
 
@@ -126,5 +148,75 @@ class RegistrationController extends Controller
         $reg->save();
 
         return redirect("/registraions/list/".$status)->with('success', "Status Changed");
+    }
+
+    public function tracking(){
+        return view('tracking');
+    }
+
+    public function trackingSearch($cnic)
+    {
+       $reg = registration::where("cnic", $cnic)->first();
+       $data = "Lookig for Data";
+       if(!$reg){
+        $data = "<span class='alert alert-danger'>No recored found against CNIC: $cnic </span>";
+       }
+       else{
+        $status = null;
+        if($reg->isFinal == 'no')
+        {
+            $status = "Under Process";
+            $notes = "Your application will be finalized shortly";
+        }
+        else
+        {
+            $status = $reg->status;
+            $tracking = tracking::where("appID", $reg->id)->orderBy('id', 'desc')->first();
+            $notes = $tracking->notes;
+        }
+        $color = null;
+        if($status == "Under Process")
+        {
+            $color = "text-warning";
+        }
+        if($status == "Approved")
+        {
+            $color = "text-success";
+        }
+        if($status == "Rejected")
+        {
+            $color = "text-danger";
+        }
+        $data = '<div class="card">';
+            $data .= '<div class="card-header">';
+                $data .= '<h5>Application Status</h5>';
+            $data .= '</div>';
+            $data .= '<div class="card-body">';
+                $data .= '<div class="row">';
+                    $data .= '<div class="col-md-3">';
+                        $data .= '<h6>Application ID</h6>';
+                        $data .= '<p>'.$reg->id.'</p>';
+                    $data .= '</div>';
+                    $data .= '<div class="col-md-3">';
+                        $data .= '<h6>Applicant Name</h6>';
+                        $data .= '<p>'.$reg->name.'</p>';
+                    $data .= '</div>';
+                    $data .= '<div class="col-md-3">';
+                        $data .= '<h6>Status</h6>';
+                        $data .= '<p class='.$color.'>'.$status.'</p>';
+                    $data .= '</div>';
+                     $data .= '<div class="col-md-3">';
+                        $data .= '<h6>Notes</h6>';
+                        $data .= '<p>'.$notes.'</p>';
+                    $data .= '</div>';
+                $data .= '</div>';
+            $data .= '</div>';
+        $data .= '</div>';
+
+       }
+       
+       
+
+       return $data;
     }
 }

@@ -77,8 +77,8 @@
                                     <div class="row mt-2">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="cnic">CNIC Number</label>
-                                                <input type="text" class="form-control" id="cnic" name="cnic">
+                                                <label for="cnic">CNIC Number (Without Dashes)</label>
+                                                <input type="text" class="form-control" maxlength="13" id="cnic" name="cnic">
                                             </div>
                                         </div>
                                         <div class="col-md-6">

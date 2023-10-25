@@ -84,6 +84,24 @@
                     </div>
                     </a>
                 </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                    <a href="{{ url('/registraions/list/final') }}">
+                    <div class="widget widget-card-four">
+                        <div class="widget-content">
+                            <div class="w-header">
+                                <div class="w-info">
+                                    <h6 class="value">Finalized</h6>
+                                </div>
+                            </div>
+                            <div class="w-content">
+                                <div class="w-info">
+                                    <h3>{{ $final }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
 
 
         </div>

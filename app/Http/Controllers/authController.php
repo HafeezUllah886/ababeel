@@ -45,11 +45,19 @@ class authController extends Controller
         return redirect('/');
     }
     public function dashboard(){
-       $pending = registration::where('status', 'Pending')->count();
-       $approved = registration::where('status', 'Approved')->count();
-       $rejected = registration::where('status', 'Rejected')->count();
+       $pending = registration::where('status', 'Pending')->where('isFinal', 'no')->where('assigned', auth()->user()->id)->count();
+       $approved = registration::where('status', 'Approved')->where('isFinal', 'no')->where('assigned', auth()->user()->id)->count();
+       $rejected = registration::where('status', 'Rejected')->where('isFinal', 'no')->where('assigned', auth()->user()->id)->count();
+       $final = registration::where('isFinal', 'yes')->where('assigned', auth()->user()->id)->count();
+       if(auth()->user()->user_role == "Admin")
+       {
+        $pending = registration::where('status', 'Pending')->where('isFinal', 'no')->count();
+       $approved = registration::where('status', 'Approved')->where('isFinal', 'no')->count();
+       $rejected = registration::where('status', 'Rejected')->where('isFinal', 'no')->count();
+       $final = registration::where('isFinal', 'yes')->count();
+       }
 
-        return view('dashboard.dashboard', compact('pending', 'approved', 'rejected'));
+        return view('dashboard.dashboard', compact('pending', 'approved', 'rejected', 'final'));
     }
 
    public function users(){

@@ -14,4 +14,8 @@ class registration extends Model
     {
         return $this->hasMany(tracking::class, 'appID', 'id');
     }
+    public function assigned()
+    {
+        return $this->hasMany(User::class, 'id', 'assignedTo');
+    }
 }

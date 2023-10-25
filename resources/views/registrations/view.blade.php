@@ -95,8 +95,10 @@
                         </table>
                         <div class="d-flex justify-content-end">
                             <a href="{{ url('/dashboard') }}" class="btn btn-dark" style="margin-left: 5px">Dashboard</a>
-                            @if($reg->status != 'Pending')
-                                <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Finalized" class="btn btn-warning" id="final" style="margin-left: 5px">Finalized</a>
+                            @if($reg->isFinal == 'no')
+                                @if($reg->status != 'Pending')
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#finalize" class="btn btn-warning" id="final" style="margin-left: 5px">Finalized</a>
+                                @endif
                             @endif
                         </div>
                     </div>
@@ -104,7 +106,33 @@
             </div>
         </div>
     </div>
-
+    <div class="modal fade" id="finalize" tabindex="-1" aria-labelledby="payModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md"> <!-- Add "modal-dialog-white" class -->
+            <div class="modal-content" style="background-color: white; color: #000000"> <!-- Add "modal-content-white" class -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="payModalLabel" style="color: black; font-weight: bold">Finalize Application</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2 class="text-center">Are you sure?</h2>
+                    <h5 class="text-center">Once your application status is finalized, you won't have the ability to make any changes</h5>
+                    <h6 class="text-center">Application Status: <span class="badge {{$reg->status == "Approved" ? "badge-success" : "badge-danger"}} ">{{$reg->status}}</span></h6>
+                    <form class="form-horizontal" action="{{ url('/app/finalize') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $reg->id }}">
+                        <div class="form-group">
+                            <label for="notes">Notes</label>
+                           <textarea name="notes" id="notes" class="form-control" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input class="btn btn-primary" type="submit" value="Proceed">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-12">
         <div class="card">
             <div class="card-body">
@@ -193,7 +221,7 @@
 <!-- END PAGE LEVEL SCRIPTS -->
     <script>
 
-                // Add a click event listener to the anchor tag
+/*                 // Add a click event listener to the anchor tag
 // Add a click event listener to the anchor tag
 $("#final").click(function(e) {
   // Prevent the default link behavior
@@ -214,7 +242,7 @@ $("#final").click(function(e) {
       window.location.href = $(e.target).attr("href");
     }
   });
-});
+}); */
         $('#zero-config').DataTable({
             "dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>" +
         "<'table-responsive'tr>" +

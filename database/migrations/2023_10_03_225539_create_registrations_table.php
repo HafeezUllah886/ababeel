@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('licenses')->nullable();
             $table->string('status');
             $table->string('isFinal');
+            $table->foreignId('assigned')->constrained('users', 'id');
             $table->string('date');
             $table->timestamps();
         });

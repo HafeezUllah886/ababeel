@@ -31,8 +31,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/registration', [RegistrationController::class, 'registration']);
+Route::get('/registration', [RegistrationController::class, 'tracking']);
+Route::get('/registration/create', [RegistrationController::class, 'registration']);
 Route::post('/registration/store', [RegistrationController::class, 'store']);
+Route::get('/registeration/track/search/{cnic}', [RegistrationController::class, 'trackingSearch']);
 Route::get('/', [authController::class, 'signin'])->name('login');
 Route::post('/', [authController::class, 'attempt_signin']);
 Route::get('/test', [settingsController::class, 'test']);
@@ -83,5 +85,6 @@ Route::middleware('auth')->group(function (){
     Route::get('/registration/view/{id}', [RegistrationController::class, 'view']);
     Route::get('/registraion/changeStatus/{id}/{status}', [RegistrationController::class, 'changeStatus']);
     Route::post('/app/forwarding/', [TrackingController::class, 'forwarding']);
+    Route::post('/app/finalize', [TrackingController::class, 'finalize']);
 
 });

@@ -49,18 +49,20 @@
                                     <td> {{ $reg->cnic }}</td>
                                     <td> {{ date('d M Y', strtotime($reg->date)) }}</td>
                                     <td>
-                                        @if($reg->status == 'Pending')
-                                        <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Approve" class="btn btn-success btn-sm">Approved</a><br>
-                                        <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Rejected" class="btn btn-danger btn-sm">Rejected</a><br>
+                                        @if($reg->isFinal == 'no')
+                                            @if($reg->status == 'Pending')
+                                            <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Approved" class="btn btn-success btn-sm">Approve</a><br>
+                                            <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Rejected" class="btn btn-danger btn-sm">Reject</a><br>
 
-                                        @elseif($reg->status == "Rejected")
-                                        <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Approved" class="btn btn-success btn-sm">Approved</a><br>
-                                        @elseif($reg->status == "Approved")
+                                            @elseif($reg->status == "Rejected")
+                                            <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Approved" class="btn btn-success btn-sm">Approve</a><br>
+                                            @elseif($reg->status == "Approved")
 
-                                        <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Rejected" class="btn btn-danger btn-sm">Rejected</a><br>
+                                            <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Rejected" class="btn btn-danger btn-sm">Reject</a><br>
+                                            @endif
+
+                                            <a href="#" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#pay_{{ $reg->id }}">Forward</a><br>
                                         @endif
-
-                                        <a href="{{ url('/registraion/changeStatus/') }}/{{ $reg->id }}/Pending" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#pay_{{ $reg->id }}">Forward</a><br>
                                         <a href="{{ url('/registration/view/') }}/{{ $reg->id }}" class="btn btn-info btn-sm">View</a>
                                         {{-- <div class="dropdown">
                                             <button class="btn dropdown-toggle form-select" type="button" id="dropdownMenuButton_{{ $reg->id }}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
