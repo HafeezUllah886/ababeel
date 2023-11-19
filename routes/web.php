@@ -31,12 +31,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/registration', [RegistrationController::class, 'tracking']);
+Route::get('/', [RegistrationController::class, 'tracking']);
 Route::get('/registration/create', [RegistrationController::class, 'registration']);
 Route::post('/registration/store', [RegistrationController::class, 'store']);
 Route::get('/registeration/track/search/{cnic}', [RegistrationController::class, 'trackingSearch']);
-Route::get('/', [authController::class, 'signin'])->name('login');
-Route::post('/', [authController::class, 'attempt_signin']);
+Route::get('/admin', [authController::class, 'signin'])->name('login');
+Route::post('/admin', [authController::class, 'attempt_signin']);
 Route::get('/test', [settingsController::class, 'test']);
 Route::get('/clear-cache', function() {
     Artisan::call('route:clear');

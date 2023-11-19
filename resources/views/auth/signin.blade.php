@@ -56,7 +56,7 @@
                                     <p>{{ getSettings()->proName; }}</p>
 
                                 </div>
-                                <form action="{{url('/')}}" method="post">
+                                <form action="{{url('/admin')}}" method="post">
                                     @csrf
 
                                 <div class="col-md-12">

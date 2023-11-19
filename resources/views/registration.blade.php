@@ -157,91 +157,67 @@
                                         </div>
                                     </div>
                                     <div class="row mt-2">
-                                        <table class="table w-100">
-                                            <thead>
-                                                <th width="40%">Required Files</th>
-                                                <th width="20%">Preview</th>
-                                                <th width="40%">Instructions</th>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="form-group">
-                                                            <label for="photo">Passport Size Image</label>
-                                                            <input type="file" id="photo" name="photo" class="form-control" accept="image/*">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                    <img id="photoPreview" src="#" alt="Image Preview" style="display: none; max-width: 150px; max-height: 150px;">
-                                                    </td>
-                                                    <td>
-                                                       * Fresh Photograph with blue background
-                                                    </td>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="photo">Passport Size Image</label>
+                                                <input type="file" id="photo" name="photo" class="form-control" accept="image/*">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <img id="photoPreview" src="#" alt="Image Preview" style="display: none; max-width: 150px; max-height: 150px;">
+                                        </div>
+                                        <div class="col-md-4">
+                                            * Fresh Photograph with blue background
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="cnicF">CNIC Front</label>
+                                                <input type="file" id="cnicF" name="cnicF" class="form-control" accept="image/*">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <img id="cnicFPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
+                                        </div>
+                                        <div class="col-md-4">
+                                            * Must be a clear/readable image
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="cnicB">CNIC Back</label>
+                                                <input type="file" id="cnicB" name="cnicB" class="form-control" accept="image/*">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <img id="cnicBPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
+                                        </div>
+                                        <div class="col-md-4">
+                                            * Must be a clear/readable image
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="bCard">Bar Council Card</label>
+                                                <input type="file" id="bCard" name="bCard" class="form-control" accept="image/*">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <img id="bCardPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
+                                        </div>
+                                        <div class="col-md-4">
+                                            * Must be a clear/readable image
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="license">Licenses</label>
+                                                <input type="file" id="license" name="license" class="form-control" accept=".pdf">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <embed id="licensePreview" src="#" alt="Image Preview" style="display: none; max-width: 300px; max-height: 400px;">
+                                        </div>
+                                        <div class="col-md-4">
+                                            * Upload a PDF file. If you want to upload more than one license, combine all the license documents into a single PDF
+                                        </div>
 
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="form-group">
-                                                            <label for="cnicF">CNIC Front</label>
-                                                            <input type="file" id="cnicF" name="cnicF" class="form-control" accept="image/*">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                    <img id="cnicFPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
-                                                    </td>
-                                                    <td>
-                                                       * Must be a clear/readable image
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="form-group">
-                                                            <label for="cnicB">CNIC Back</label>
-                                                            <input type="file" id="cnicB" name="cnicB" class="form-control" accept="image/*">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                    <img id="cnicBPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
-                                                    </td>
-                                                    <td>
-                                                       * Must be a clear/readable image
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="form-group">
-                                                            <label for="bCard">Bar Council Card</label>
-                                                            <input type="file" id="bCard" name="bCard" class="form-control" accept="image/*">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                    <img id="bCardPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
-                                                    </td>
-                                                    <td>
-                                                       * Must be a clear/readable image
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="form-group">
-                                                            <label for="license">Licenses</label>
-                                                            <input type="file" id="license" name="license" class="form-control" accept=".pdf">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                    <embed id="licensePreview" src="#" alt="Image Preview" style="display: none; max-width: 300px; max-height: 400px;">
-
-                                                    </td>
-                                                    <td>
-                                                       * Upload a PDF file. If you want to upload more than one license, combine all the license documents into a single PDF
-                                                    </td>
-
-                                                </tr>
-                                            </tbody>
-                                        </table>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-9">
