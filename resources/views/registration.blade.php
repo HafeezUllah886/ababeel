@@ -64,13 +64,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="name">Name</label>
-                                                <input type="text" class="form-control" id="name" name="name">
+                                                <input type="text" class="form-control" required id="name" name="name">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="fname">Father Name</label>
-                                                <input type="text" class="form-control" id="fname" name="fname">
+                                                <input type="text" class="form-control" required id="fname" name="fname">
                                             </div>
                                         </div>
                                     </div>
@@ -78,13 +78,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="cnic">CNIC Number (Without Dashes)</label>
-                                                <input type="text" class="form-control" maxlength="13" id="cnic" name="cnic">
+                                                <input type="text" class="form-control" required maxlength="13" id="cnic" name="cnic">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="gender">Gender</label>
-                                                <select class="form-select" name="gender" id="gender">
+                                                <select class="form-select" required name="gender" id="gender">
                                                     <option value="Male">Male</option>
                                                     <option value="Female">Female</option>
                                                 </select>
@@ -95,13 +95,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="dist">District</label>
-                                                <input type="text" class="form-control" id="dist" name="dist">
+                                                <input type="text" class="form-control" required id="dist" name="dist">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="dob">Date of Birth</label>
-                                                <input type="date" class="form-control" id="dob" name="dob">
+                                                <input type="date" class="form-control" required id="dob" name="dob">
                                             </div>
                                         </div>
                                     </div>
@@ -112,19 +112,19 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="lc">L.C</label>
-                                                <input type="date" class="form-control" id="lc" name="lc">
+                                                <input type="date" class="form-control" required id="lc" name="lc">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="hc">H.C</label>
-                                                <input type="date" class="form-control" id="hc" name="hc">
+                                                <input type="date" class="form-control" required id="hc" name="hc">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="sc">S.C</label>
-                                                <input type="date" class="form-control" id="sc" name="sc">
+                                                <input type="date" class="form-control" required id="sc" name="sc">
                                             </div>
                                         </div>
                                     </div>
@@ -132,13 +132,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="barReg">Bar Registration Number</label>
-                                                <input type="text" class="form-control" id="barReg" name="barReg">
+                                                <input type="text" class="form-control" required id="barReg" name="barReg">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="phone">Phone Number</label>
-                                                <input type="text" class="form-control" id="phone" name="phone">
+                                                <input type="text" class="form-control" required id="phone" name="phone">
                                             </div>
                                         </div>
                                     </div>
@@ -146,13 +146,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="email">Email Address</label>
-                                                <input type="email" class="form-control" id="email" name="email">
+                                                <input type="email" class="form-control" required id="email" name="email">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="addr">Office Address</label>
-                                                <input type="text" class="form-control" id="addr" name="addr">
+                                                <input type="text" class="form-control" required id="addr" name="addr">
                                             </div>
                                         </div>
                                     </div>
