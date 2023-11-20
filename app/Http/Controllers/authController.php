@@ -54,10 +54,11 @@ class authController extends Controller
         $pending = registration::where('status', 'Pending')->where('isFinal', 'no')->count();
        $approved = registration::where('status', 'Approved')->where('isFinal', 'no')->count();
        $rejected = registration::where('status', 'Rejected')->where('isFinal', 'no')->count();
+       $suspended = registration::where('status', 'Suspended')->count();
        $final = registration::where('isFinal', 'yes')->count();
        }
 
-        return view('dashboard.dashboard', compact('pending', 'approved', 'rejected', 'final'));
+        return view('dashboard.dashboard', compact('pending', 'approved', 'rejected', 'final', 'suspended'));
     }
 
    public function users(){

@@ -99,6 +99,8 @@
                                 @if($reg->status != 'Pending')
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#finalize" class="btn btn-warning" id="final" style="margin-left: 5px">Finalized</a>
                                 @endif
+                            @else
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#suspen" class="btn btn-danger" id="suspend" style="margin-left: 5px">Suspend</a>
                             @endif
                         </div>
                     </div>
@@ -118,6 +120,32 @@
                     <h5 class="text-center">Once your application status is finalized, you won't have the ability to make any changes</h5>
                     <h6 class="text-center">Application Status: <span class="badge {{$reg->status == "Approved" ? "badge-success" : "badge-danger"}} ">{{$reg->status}}</span></h6>
                     <form class="form-horizontal" action="{{ url('/app/finalize') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $reg->id }}">
+                        <div class="form-group">
+                            <label for="notes">Notes</label>
+                           <textarea name="notes" id="notes" class="form-control" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input class="btn btn-primary" type="submit" value="Proceed">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="suspen" tabindex="-1" aria-labelledby="payModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md"> <!-- Add "modal-dialog-white" class -->
+            <div class="modal-content" style="background-color: white; color: #000000"> <!-- Add "modal-content-white" class -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="payModalLabel" style="color: black; font-weight: bold">Suspend Application</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2 class="text-center">Are you sure?</h2>
+                    <h6 class="text-center">Application Status: <span class="badge {{$reg->status == "Approved" ? "badge-success" : "badge-danger"}} ">{{$reg->status}}</span></h6>
+                    <form class="form-horizontal" action="{{ url('/app/suspend') }}" method="POST">
                         @csrf
                         <input type="hidden" name="id" value="{{ $reg->id }}">
                         <div class="form-group">
@@ -189,6 +217,7 @@
             </div>
             <div class="modal-body">
                 <img src="{{ asset($reg->bCard) }}" class="w-100" alt="">
+                <img src="{{ asset($reg->bCardB) }}" class="w-100" alt="">
             </div>
         </div>
     </div>
@@ -218,48 +247,4 @@
 <script src="{{ asset('/assets/src/plugins/src/glightbox/custom-glightbox.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.32/sweetalert2.all.min.js"></script>
 
-<!-- END PAGE LEVEL SCRIPTS -->
-    <script>
 
-/*                 // Add a click event listener to the anchor tag
-// Add a click event listener to the anchor tag
-$("#final").click(function(e) {
-  // Prevent the default link behavior
-  e.preventDefault();
-
-  // Display a confirmation popup using SweetAlert
-  Swal.fire({
-    title: "Are you sure?",
-    text: "This action cannot be undone.",
-    type: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#DD6B55",
-    confirmButtonText: "Yes, proceed!",
-    closeOnConfirm: false
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // Redirect the user to the link
-      window.location.href = $(e.target).attr("href");
-    }
-  });
-}); */
-        $('#zero-config').DataTable({
-            "dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>" +
-        "<'table-responsive'tr>" +
-        "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
-            "oLanguage": {
-                "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-                "sInfo": "Showing page _PAGE_ of _PAGES_",
-                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-                "sSearchPlaceholder": "Search...",
-               "sLengthMenu": "Results :  _MENU_",
-            },
-            "stripeClasses": [],
-            "lengthMenu": [7, 10, 20, 50],
-            "pageLength": 10,
-            "ordering": false,
-        });
-
-
-    </script>
-@endpush

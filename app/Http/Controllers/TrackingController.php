@@ -31,15 +31,15 @@ class TrackingController extends Controller
         return back()->with('msg', "Application forwarded successfully");
     }
     public function finalize(request $req){
-        
+
 
         tracking::create(
             [
                 'appID' => $req->id,
-                'from' => auth()->user()->id, 
+                'from' => auth()->user()->id,
                 'to' => 1,
-                'Notes' => $req->notes, 
-                'date' => now(), 
+                'Notes' => $req->notes,
+                'date' => now(),
             ]
         );
         $app = registration::find($req->id);
@@ -48,5 +48,14 @@ class TrackingController extends Controller
         $app->save();
 
         return redirect('/dashboard')->with("msg", "Application Finalized");
+    }
+
+    public function suspend(request $req)
+    {
+        $app = registration::find($req->id);
+        $app->status = "Suspended";
+        $app->save();
+
+        return redirect('/dashboard')->with("msg", "Application Suspended");
     }
 }

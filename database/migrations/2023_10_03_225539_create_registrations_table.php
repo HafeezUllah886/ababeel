@@ -22,14 +22,16 @@ return new class extends Migration
             $table->date('lc')->nullable();
             $table->date('hc')->nullable();
             $table->date('sc')->nullable();
+            $table->date('since');
             $table->string('barReg');
             $table->string('phone');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->text('addr');
             $table->string('photo')->nullable();
             $table->string('cnicF')->nullable();
             $table->string('cnicB')->nullable();
             $table->string('bCard')->nullable();
+            $table->string('bCardB')->nullable();
             $table->string('licenses')->nullable();
             $table->string('status');
             $table->string('isFinal');

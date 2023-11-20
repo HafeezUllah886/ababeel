@@ -1,11 +1,16 @@
 @php
-    $page_title = "Registrations";
+    $page_title = "$type - Registrations";
     $page_dir = $type;
     $active = $type;
     $menu = "open";
 @endphp
 @push('extra_css')
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/src/table/datatable/datatables.css')}}">
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/src/table/datatable/datatables.css')}}"> --}}
+ <!-- DataTables CSS -->
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"/>
+
+ <!-- DataTables Buttons CSS -->
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css"/>
 
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/css/light/table/datatable/dt-global_style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/css/dark/table/datatable/dt-global_style.css')}}">
@@ -21,7 +26,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title d-flex justify-content-between">
-                    <h5>Registrations</h5>
+                    <h5>{{ $type }} - Registrations</h5>
                     <div class="card-actions">
                         <a href="{{ url('/dashboard') }}" class="btn btn-dark d-none d-sm-inline-block">
                             <i class="fas fa-plus"></i> Dashboard
@@ -29,7 +34,7 @@
                     </div>
                 </div>
                 <div class="resposive-table">
-                    <table id="zero-config" class="table table-bordered table-striped table-hover" style="width:100%">
+                    <table id="example" class="table table-bordered table-striped table-hover" style="width:100%">
                         <thead>
                             <th>#</th>
                             <th>Picture</th>
@@ -128,28 +133,66 @@
 @endsection
 
 @push('extra_js')
-<script src="{{ asset('assets/src/plugins/src/jquery-ui/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/src/plugins/src/table/datatable/datatables.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- DataTables JavaScript -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<!-- DataTables Buttons JavaScript -->
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
+
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{ asset('/assets/src/plugins/src/glightbox/glightbox.min.js')}}"></script>
 <script src="{{ asset('/assets/src/plugins/src/glightbox/custom-glightbox.min.js')}}"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
     <script>
-        $('#zero-config').DataTable({
-            "dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>" +
-        "<'table-responsive'tr>" +
-        "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
-            "oLanguage": {
-                "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-                "sInfo": "Showing page _PAGE_ of _PAGES_",
-                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-                "sSearchPlaceholder": "Search...",
-               "sLengthMenu": "Results :  _MENU_",
+       $(document).ready(function() {
+    // Initialize DataTable
+    var table = $('#example').DataTable({
+        dom: 'Bfrtip', // Include Buttons for export and print
+        buttons: [
+            {
+                extend: 'copy',
+                exportOptions: {
+                    columns: ':visible'
+                }
             },
-            "stripeClasses": [],
-            "lengthMenu": [7, 10, 20, 50],
-            "pageLength": 10,
-            "ordering": false,
-        });
+            {
+                extend: 'csv',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [0, 2, 3, 4, 5] // Include all columns except the 7th one
+                }
+            }
+        ],
+        columnDefs: [
+            {
+                targets: [6], // Index of the column you want to hide
+                visible: true
+            }
+        ],
+        sorting : false
+    });
+});
+
     </script>
 @endpush

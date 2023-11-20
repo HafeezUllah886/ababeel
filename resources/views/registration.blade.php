@@ -118,13 +118,13 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="hc">H.C</label>
-                                                <input type="date" class="form-control" required id="hc" name="hc">
+                                                <input type="date" class="form-control" id="hc" name="hc">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="sc">S.C</label>
-                                                <input type="date" class="form-control" required id="sc" name="sc">
+                                                <input type="date" class="form-control" id="sc" name="sc">
                                             </div>
                                         </div>
                                     </div>
@@ -137,19 +137,23 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
+                                                <label for="since">Since Member of ILM</label>
+                                                <input type="date" class="form-control" required id="since" name="since">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <div class="form-group">
                                                 <label for="phone">Phone Number</label>
                                                 <input type="text" class="form-control" required id="phone" name="phone">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 mt-2">
                                             <div class="form-group">
                                                 <label for="email">Email Address</label>
-                                                <input type="email" class="form-control" required id="email" name="email">
+                                                <input type="email" class="form-control" id="email" name="email">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 mt-2">
                                             <div class="form-group">
                                                 <label for="addr">Office Address</label>
                                                 <input type="text" class="form-control" required id="addr" name="addr">
@@ -157,64 +161,77 @@
                                         </div>
                                     </div>
                                     <div class="row mt-2">
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-2">
                                             <div class="form-group">
                                                 <label for="photo">Passport Size Image</label>
                                                 <input type="file" id="photo" name="photo" class="form-control" accept="image/*">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-2">
                                             <img id="photoPreview" src="#" alt="Image Preview" style="display: none; max-width: 150px; max-height: 150px;">
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-2">
                                             * Fresh Photograph with blue background
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-2">
                                             <div class="form-group">
                                                 <label for="cnicF">CNIC Front</label>
                                                 <input type="file" id="cnicF" name="cnicF" class="form-control" accept="image/*">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-2">
                                             <img id="cnicFPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-2">
                                             * Must be a clear/readable image
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-2">
                                             <div class="form-group">
                                                 <label for="cnicB">CNIC Back</label>
                                                 <input type="file" id="cnicB" name="cnicB" class="form-control" accept="image/*">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-2">
                                             <img id="cnicBPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-2">
                                             * Must be a clear/readable image
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-2">
                                             <div class="form-group">
-                                                <label for="bCard">Bar Council Card</label>
+                                                <label for="bCard">Bar Council Card (Front)</label>
                                                 <input type="file" id="bCard" name="bCard" class="form-control" accept="image/*">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-2">
                                             <img id="bCardPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-2">
                                             * Must be a clear/readable image
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-2">
+                                            <div class="form-group">
+                                                <label for="bCard">Bar Council Card (Back)</label>
+                                                <input type="file" id="bCardB" name="bCardB" class="form-control" accept="image/*">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mt-2">
+                                            <img id="bCardBPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
+                                        </div>
+                                        <div class="col-md-4 mt-2">
+                                            * Must be a clear/readable image
+                                        </div>
+                                        <div class="col-md-4 mt-2">
                                             <div class="form-group">
                                                 <label for="license">Licenses</label>
                                                 <input type="file" id="license" name="license" class="form-control" accept=".pdf">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+
+                                        <div class="col-md-4 mt-2">
                                             <embed id="licensePreview" src="#" alt="Image Preview" style="display: none; max-width: 300px; max-height: 400px;">
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-2">
                                             * Upload a PDF file. If you want to upload more than one license, combine all the license documents into a single PDF
                                         </div>
 
@@ -369,6 +386,23 @@
                 $("#bCardPreview").attr("src", e.target.result);
                 // Display the image element
                 $("#bCardPreview").show();
+            };
+            // Read the file as a Data URL
+            reader.readAsDataURL(file);
+        }
+    });
+    $("#bCardB").change(function () {
+        // Get the selected file
+        var file = this.files[0];
+        if (file) {
+            // Create a FileReader
+            var reader = new FileReader();
+            // Set a function to run when the file is loaded
+            reader.onload = function (e) {
+                // Set the source of the image element to the Data URL
+                $("#bCardBPreview").attr("src", e.target.result);
+                // Display the image element
+                $("#bCardBPreview").show();
             };
             // Read the file as a Data URL
             reader.readAsDataURL(file);

@@ -61,6 +61,16 @@ class RegistrationController extends Controller
             $img = Image::make($image);
             $img->save($image_path,100);
         }
+        $bCardB_path1 = null;
+        if($req->hasFile('bCardB')){
+
+            $image = $req->file('bCardB');
+            $filename = $req->cnic.".".$image->getClientOriginalExtension();
+            $image_path = public_path('/files/bCardB/'.$filename);
+            $bCardB_path1 = '/files/bCardB/'.$filename;
+            $img = Image::make($image);
+            $img->save($image_path,100);
+        }
         $license_path1 = null;
         if ($req->hasFile('license')) {
             $pdf = $req->file('license');
@@ -82,6 +92,7 @@ class RegistrationController extends Controller
                 'lc' => $req->lc,
                 'hc' => $req->hc,
                 'sc' => $req->sc,
+                'since' => $req->since,
                 'barReg' => $req->barReg,
                 'phone' => $req->phone,
                 'email' => $req->email,
@@ -90,6 +101,7 @@ class RegistrationController extends Controller
                 'cnicF' => $cnicF_path1,
                 'cnicB' => $cnicB_path1,
                 'bCard' => $bCard_path1,
+                'bCardB' => $bCardB_path1,
                 'licenses' => $license_path1,
                 'isFinal' => "no",
                 'assigned' => 2,
@@ -120,14 +132,19 @@ class RegistrationController extends Controller
             $final = "yes";
             $registrations = registration::where('isFinal', $final)->where('assigned', auth()->user()->id)->get();
         }
-        
-       
+        if($type == 'Suspended')
+        {
+            $final = "yes";
+            $registrations = registration::where('status', $type)->where('isFinal', $final)->where('assigned', auth()->user()->id)->get();
+        }
+
+
         if(auth()->user()->user_role == "Admin")
         {
-            $registrations = registration::where('status', $type)->where('isFinal', $final)->orderBy('updated_at', 'desc')->get();  
+            $registrations = registration::where('status', $type)->where('isFinal', $final)->orderBy('updated_at', 'desc')->get();
             if($final == "yes")
             {
-                $registrations = registration::where('isFinal', $final)->orderBy('updated_at', 'desc')->get();  
+                $registrations = registration::where('isFinal', $final)->orderBy('updated_at', 'desc')->get();
             }
         }
         $users = User::where('id', '!=', auth()->user()->id)->where('user_role', '!=', 'System')->get();
@@ -182,6 +199,7 @@ class RegistrationController extends Controller
         if($status == "Approved")
         {
             $color = "text-success";
+            $status = "It's Approved he is member of ILF";
         }
         if($status == "Rejected")
         {
@@ -214,8 +232,8 @@ class RegistrationController extends Controller
         $data .= '</div>';
 
        }
-       
-       
+
+
 
        return $data;
     }

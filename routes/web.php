@@ -86,5 +86,6 @@ Route::middleware('auth')->group(function (){
     Route::get('/registraion/changeStatus/{id}/{status}', [RegistrationController::class, 'changeStatus']);
     Route::post('/app/forwarding/', [TrackingController::class, 'forwarding']);
     Route::post('/app/finalize', [TrackingController::class, 'finalize']);
+    Route::post('/app/suspend', [TrackingController::class, 'suspend']);
 
 });
