@@ -21,7 +21,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-12 text-end">
+                    <div class="col-md-12 text-end">
                         @if($reg->status == 'Pending')
                             <p class="position-absolute top-0 end-0 badge bg-warning">{{ $reg->status }}</p>
                         @endif
@@ -32,14 +32,14 @@
                             <p class="position-absolute top-0 end-0 badge bg-danger">{{ $reg->status }}</p>
                         @endif
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-md-3" style="margin-bottom:100px;">
                         <img src="{{ asset($reg->photo) }}" style="width:100%;max-height:400px;" alt="">
                         <h3 class="mt-3">{{ $reg->name }}</h3>
                         <p class="btn btn-default" data-bs-toggle="modal" data-bs-target="#cnic">View CNIC</p>
                         <p class="btn btn-default" data-bs-toggle="modal" data-bs-target="#bCard">View Bar Council Card</p>
                         <p class="btn btn-default"  data-bs-toggle="modal" data-bs-target="#licenses">View Licenses</p>
                     </div>
-                    <div class="col-sm-9">
+                    <div class="col-md-9">
                         <table class="table" width="100%">
                             <tr>
                                 <td width="30%">Registration Id</td>
@@ -178,7 +178,7 @@
                 <div class="card-header">
                     <h3>Application Tracking</h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body table-responsive">
                     <table class="table">
                         <thead>
                             <th>#</th>
@@ -258,7 +258,7 @@
 <script src="{{ asset('/assets/src/plugins/src/glightbox/custom-glightbox.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.32/sweetalert2.all.min.js"></script>
 <script>
-  
+
      $(document).ready(function() {
       $('#delete').on('click', function(event) {
         // Display a confirmation dialog
@@ -266,7 +266,7 @@
 
         // Check if the user clicked 'OK'
         if (confirmed) {
-          
+
         } else {
           // User clicked 'Cancel', prevent the default link behavior
           event.preventDefault();

@@ -61,12 +61,7 @@
             </div>
 
             <ul class="navbar-item flex-row ms-auto action-area">
-                <li class="nav-item theme-toggle-item">
-                    <a href="javascript:void(0);" class="nav-link theme-toggle">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon dark-mode"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun light-mode"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                    </a>
-                </li>
+
 
                 <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -102,14 +97,6 @@
                                 <span>{{ __('lang.Settings') }}</span>
                             </a>
                         </div>
-                        @can('View Activity Logs')
-                        <div class="dropdown-item">
-                            <a href="{{ url('/activities') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                                <span> {{ __('lang.ActivityLog') }}</span>
-                            </a>
-                        </div>
-                        @endcan
                         <div class="dropdown-item">
                             <a href="{{url('/logout')}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
@@ -127,11 +114,11 @@
     <!--  BEGIN MAIN CONTAINER  -->
     <div class="main-container sidebar-closed sbar-open" id="container">
 
-        <div class="overlay"></div>
-        <div class="search-overlay"></div>
+        {{-- <div class="overlay"></div>
+        <div class="search-overlay"></div> --}}
 
         <!--  BEGIN SIDEBAR  -->
-        <div class="sidebar-wrapper sidebar-theme">
+       <div class="sidebar-wrapper sidebar-theme">
 
             <nav id="sidebar">
 
@@ -163,47 +150,132 @@
                             </div>
                         </a>
                     </li>
-                    <li class="menu">
-                        <a href="{{ url('/registraions/list/Pending') }}" aria-expanded="false" class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                <span>Pending</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="menu">
-                        <a href="{{ url('/registraions/list/Approved') }}" aria-expanded="false" class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                <span>Approved</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="menu">
-                        <a href="{{ url('/registraions/list/Rejected') }}" aria-expanded="false" class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                <span>Rejected</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="menu">
-                        <a href="{{ url('/registraions/list/final') }}" aria-expanded="false" class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                <span>Finalized</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="menu">
-                        <a href="{{ url('/registraions/list/Suspended') }}" aria-expanded="false" class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                <span>Suspended</span>
-                            </div>
-                        </a>
-                    </li>
+                    @canany(['Create Sale', 'View Sale History'])
+                        <li class="menu">
+                            <a href="#outflow" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                    <span>{{__('lang.Sale')}}</span>
+                                </div>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </a>
+                            <ul class="collapse submenu list-unstyled" id="outflow" data-bs-parent="#accordionExample">
+                                @can('Create Sale')
+                                <li>
+                                    <a href="{{ url('/invoice') }}"> {{__('lang.CreateSale')}} </a>
+                                </li>
+                                @endcan
+                                @can('View Sale History')
+                                <li>
+                                    <a href="{{ url('/invoice/history/')}}"> {{__('lang.History')}} </a>
+                                </li>
+                                @endcan
 
+                            </ul>
+                        </li>
+                    @endcanany
+                    @canany(['Create Purchase', 'View Purchase History'])
+                        <li class="menu">
+                            <a href="#inflow" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                    <span>{{__('lang.Purchase')}}</span>
+                                </div>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </a>
+                            <ul class="collapse submenu list-unstyled" id="inflow" data-bs-parent="#accordionExample">
+                                @can('Create Purchase')
+                                <li>
+                                    <a href="{{ url('/receiving') }}"> {{__('lang.CreatePurchase')}} </a>
+                                </li>
+                                @endcan
+                                @can("View Purchase History")
+                                <li>
+                                    <a href="{{ url('/inflow/history/')}}"> {{__('lang.History')}} </a>
+                                </li>
+                                @endcan
+
+                            </ul>
+                        </li>
+                    @endcanany
+                    @canany(['View Accounts', 'View Deposits', 'View Withdraws', 'View Expenses', 'View Transfers'])
+                        <li class="menu">
+                            <a href="#accounts" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                                    <span>{{__('lang.Finance')}}</span>
+                                </div>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </a>
+                            <ul class="collapse submenu list-unstyled" id="accounts" data-bs-parent="#accordionExample">
+                                @can('View Accounts')
+                                <li>
+                                    <a href="{{ url('/accounts') }}"> {{__('lang.Accounts')}} </a>
+                                </li>
+                                @endcan
+                                @can('View Deposits')
+                                <li>
+                                    <a href="{{ url('/accounts/deposit/')}}"> {{__('lang.Deposit')}} </a>
+                                </li>
+                                @endcan
+                                @can('View Withdraws')
+                                <li>
+                                    <a href="{{ url('/accounts/withdraw/')}}"> {{__('lang.Withdraw')}} </a>
+                                </li>
+                                @endcan
+                                @can('View Transfers')
+                                <li>
+                                    <a href="{{ url('/accounts/transfer/')}}"> {{__('lang.Transfer')}} </a>
+                                </li>
+                                @endcan
+                                @can('View Expenses')
+                                <li>
+                                    <a href="{{ url('/accounts/expense/')}}"> {{__('lang.Expense')}} </a>
+                                </li>
+                                @endcan
+
+
+                            </ul>
+                        </li>
+                    @endcanany
+                    <!-- Products Menu -->
+                    @can('View Products')
+                    <li class="menu">
+                        <a href="{{ url('/products') }}" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                                <span>{{ __('lang.Products') }}</span>
+                            </div>
+                        </a>
+                    </li>
+                    @endcan
+
+                    @can('View Warehouses')
+                    <li class="menu">
+                        <a href="{{ url('/warehouse') }}" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                                <span>{{ __('lang.Warehouse') }}</span>
+                            </div>
+                        </a>
+                    </li>
+                    @endcan
+
+                    <li class="menu">
+                        <a href="{{ url('/reset') }}" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                                <span class="text-danger">Reset Software</span>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- Extra Menu -->
 
                 </ul>
 
@@ -222,15 +294,15 @@
                     <div class="secondary-nav">
                         <div class="breadcrumbs-container" data-page-heading="Analytics">
                             <header class="header navbar navbar-expand-sm">
-                                <a href="javascript:void(0);" class="btn-toggle sidebarCollapse" data-placement="bottom">
+                                {{-- <a href="javascript:void(0);" class="btn-toggle sidebarCollapse" data-placement="bottom">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-                                </a>
+                                </a> --}}
                                 <div class="d-flex breadcrumb-content">
-                                    <div class="page-header">
+                                    <div class="page-header" style="margin-left:20px;">
 
                                         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                                             <ol class="breadcrumb">
-                                                <li class="breadcrumb-item"> {{ $page_dir}} </li>
+                                                <li class="breadcrumb-item">{{$page_dir  }}</li>
                                             </ol>
                                         </nav>
 

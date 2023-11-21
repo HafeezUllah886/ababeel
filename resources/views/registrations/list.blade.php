@@ -33,7 +33,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="resposive-table">
+                <div class="table-responsive">
                     <table id="example" class="table table-bordered table-striped table-hover" style="width:100%">
                         <thead>
                             <th>#</th>
