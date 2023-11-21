@@ -49,6 +49,7 @@ class authController extends Controller
        $approved = registration::where('status', 'Approved')->where('isFinal', 'no')->where('assigned', auth()->user()->id)->count();
        $rejected = registration::where('status', 'Rejected')->where('isFinal', 'no')->where('assigned', auth()->user()->id)->count();
        $final = registration::where('isFinal', 'yes')->where('assigned', auth()->user()->id)->count();
+       $suspended = registration::where('status', 'Suspended')->where('assigned', auth()->user()->id)->count();
        if(auth()->user()->user_role == "Admin")
        {
         $pending = registration::where('status', 'Pending')->where('isFinal', 'no')->count();
