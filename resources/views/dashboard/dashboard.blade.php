@@ -108,7 +108,7 @@
                         <div class="widget-content">
                             <div class="w-header">
                                 <div class="w-info">
-                                    <h6 class="value">Suspend</h6>
+                                    <h6 class="value">Suspended</h6>
                                 </div>
                             </div>
                             <div class="w-content">

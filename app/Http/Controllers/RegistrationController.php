@@ -232,9 +232,24 @@ class RegistrationController extends Controller
         $data .= '</div>';
 
        }
-
-
-
        return $data;
+    }
+
+    public function delete($id)
+    {
+        tracking::where("appID" ,$id)->delete();
+        registration::find($id)->delete();
+
+        return redirect('/dashboard')->with("error", "Registration Deleted");
+    }
+
+    public function reApprove($id)
+    {
+        $reg = registration::find($id);
+        $reg->isFinal = "no";
+        $reg->status = "Approved";
+        $reg->save();
+
+        return redirect('/dashboard')->with("msg", "Registration Re-approved and moved to approved list");
     }
 }

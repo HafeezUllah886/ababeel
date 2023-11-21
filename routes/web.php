@@ -83,6 +83,8 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/registraions/list/{type}', [RegistrationController::class, 'list']);
     Route::get('/registration/view/{id}', [RegistrationController::class, 'view']);
+    Route::get('/registration/delete/{id}', [RegistrationController::class, 'delete']);
+    Route::get('/registration/reApprove/{id}', [RegistrationController::class, 'reApprove']);
     Route::get('/registraion/changeStatus/{id}/{status}', [RegistrationController::class, 'changeStatus']);
     Route::post('/app/forwarding/', [TrackingController::class, 'forwarding']);
     Route::post('/app/finalize', [TrackingController::class, 'finalize']);

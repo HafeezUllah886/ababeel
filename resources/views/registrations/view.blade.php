@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/css/light/table/datatable/dt-global_style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/css/dark/table/datatable/dt-global_style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/src/plugins/src/glightbox/glightbox.min.css')}}">
+
 @endpush
 
 @extends('layout.main')
@@ -32,7 +33,7 @@
                         @endif
                     </div>
                     <div class="col-sm-3">
-                        <img src="{{ asset($reg->photo) }}" style="width:100%;" alt="">
+                        <img src="{{ asset($reg->photo) }}" style="width:100%;max-height:400px;" alt="">
                         <h3 class="mt-3">{{ $reg->name }}</h3>
                         <p class="btn btn-default" data-bs-toggle="modal" data-bs-target="#cnic">View CNIC</p>
                         <p class="btn btn-default" data-bs-toggle="modal" data-bs-target="#bCard">View Bar Council Card</p>
@@ -77,6 +78,10 @@
                                 <td>{{ date("d M Y", strtotime($reg->sc)) }}</td>
                             </tr>
                             <tr>
+                                <td>Since Member of ILM</td>
+                                <td>{{ date("d M Y", strtotime($reg->since)) }}</td>
+                            </tr>
+                            <tr>
                                 <td>Bar Registration Number</td>
                                 <td>{{ $reg->barReg }}</td>
                             </tr>
@@ -99,9 +104,15 @@
                                 @if($reg->status != 'Pending')
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#finalize" class="btn btn-warning" id="final" style="margin-left: 5px">Finalized</a>
                                 @endif
-                            @else
+                            @endif
+                            @if($reg->status == 'Suspended')
+                                <a href="{{url('/registration/delete/')}}/{{$reg->id}}" class="btn btn-danger" id="delete" style="margin-left: 5px">Delete</a>
+                                <a href="{{url('/registration/reApprove/')}}/{{$reg->id}}" class="btn btn-success" style="margin-left: 5px">Re-Approve</a>
+                            @endif
+                            @if ($reg->isFinal == "yes" && $reg->status != "Suspended")
                             <a href="#" data-bs-toggle="modal" data-bs-target="#suspen" class="btn btn-danger" id="suspend" style="margin-left: 5px">Suspend</a>
                             @endif
+
                         </div>
                     </div>
                 </div>
@@ -246,5 +257,22 @@
 <script src="{{ asset('/assets/src/plugins/src/glightbox/glightbox.min.js')}}"></script>
 <script src="{{ asset('/assets/src/plugins/src/glightbox/custom-glightbox.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.32/sweetalert2.all.min.js"></script>
+<script>
+  
+     $(document).ready(function() {
+      $('#delete').on('click', function(event) {
+        // Display a confirmation dialog
+        var confirmed = confirm('Are you sure you want to delete member?');
 
+        // Check if the user clicked 'OK'
+        if (confirmed) {
+          
+        } else {
+          // User clicked 'Cancel', prevent the default link behavior
+          event.preventDefault();
+          alert('Action canceled');
+        }
+      });
+    });
+</script>
 
