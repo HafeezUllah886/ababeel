@@ -39,7 +39,7 @@
                         <p class="btn btn-default" data-bs-toggle="modal" data-bs-target="#bCard">View Bar Council Card</p>
                         <p class="btn btn-default"  data-bs-toggle="modal" data-bs-target="#licenses">View Licenses</p>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-9 table-responsive">
                         <table class="table" width="100%">
                             <tr>
                                 <td width="30%">Registration Id</td>
