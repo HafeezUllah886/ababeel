@@ -42,7 +42,7 @@ class authController extends Controller
         request()->session()->regenerate();
         App::setLocale('en');
         Session::put('locale','en');
-        return redirect('/');
+        return redirect('/admin');
     }
     public function dashboard(){
        $pending = registration::where('status', 'Pending')->where('isFinal', 'no')->where('assigned', auth()->user()->id)->count();
