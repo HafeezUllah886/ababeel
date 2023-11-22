@@ -213,7 +213,7 @@ class RegistrationController extends Controller
             $data .= '</div>';
             $data .= '<div class="card-body">';
                 $data .= '<div class="row">';
-                    $data .= '<div class="col-md-3">';
+                    $data .= '<div class="col-md-2">';
                         $data .= '<h6>Application ID</h6>';
                         $data .= '<p>'.$reg->id.'</p>';
                     $data .= '</div>';
@@ -221,7 +221,7 @@ class RegistrationController extends Controller
                         $data .= '<h6>Applicant Name</h6>';
                         $data .= '<p>'.$reg->name.'</p>';
                     $data .= '</div>';
-                    $data .= '<div class="col-md-3">';
+                    $data .= '<div class="col-md-2">';
                         $data .= '<h6>Status</h6>';
                         $data .= '<p class='.$color.'>'.$status.'</p>';
                     $data .= '</div>';
@@ -231,7 +231,7 @@ class RegistrationController extends Controller
                     $data .= '</div>';
                     if($status == "Rejected")
                     {
-                        $data .= '<div class="col-md-3">';
+                        $data .= '<div class="col-md-2">';
                         $data .= '<button id="edit" class="btn btn-primary" onclick="confirmPassowrd('.$reg->id.')" >Edit Form</button>';
                         $data .= '</div>';
                     }
@@ -272,5 +272,111 @@ class RegistrationController extends Controller
         }
 
         return back()->with('error', 'Invalid Password');
+    }
+
+    public function update(request $req)
+    {
+        $check = registration::where("cnic", $req->cnic)->where('id', "!=", $req->id)->count();
+        if($check > 0)
+        {
+            return back()->with('error', "Application against this cnic aleardy exists");
+        }
+        $reg = registration::find($req->id);
+        $reg->name = $req->name;
+        $reg->fname = $req->fname;
+        $reg->cnic = $req->cnic;
+        $reg->gender = $req->gender;
+        $reg->dist = $req->dist;
+        $reg->dob = $req->dob;
+        $reg->lc = $req->lc;
+        $reg->hc = $req->hc;
+        $reg->sc = $req->sc;
+        $reg->since = $req->since;
+        $reg->barReg = $req->barReg;
+        $reg->phone = $req->phone;
+        $reg->email = $req->email;
+        $reg->addr = $req->addr;
+        $photo_path1 = null;
+        if($req->hasFile('photo')){
+
+            $image = $req->file('photo');
+            $filename = $req->cnic.".".$image->getClientOriginalExtension();
+            $image_path = public_path('/files/photos/'.$filename);
+            $photo_path1 = '/files/photos/'.$filename;
+            $img = Image::make($image);
+            $img->save($image_path,100);
+            $reg->photo = $photo_path1;
+        }
+        $cnicF_path1 = null;
+        if($req->hasFile('cnicF')){
+
+            $image = $req->file('cnicF');
+            $filename = $req->cnic.".".$image->getClientOriginalExtension();
+            $image_path = public_path('/files/cnicF/'.$filename);
+            $cnicF_path1 = '/files/cnicF/'.$filename;
+            $img = Image::make($image);
+            $img->save($image_path,100);
+            $reg->cnicF = $cnicF_path1;
+        }
+        $cnicB_path1 = null;
+        if($req->hasFile('cnicB')){
+
+            $image = $req->file('cnicB');
+            $filename = $req->cnic.".".$image->getClientOriginalExtension();
+            $image_path = public_path('/files/cnicB/'.$filename);
+            $cnicB_path1 = '/files/cnicB/'.$filename;
+            $img = Image::make($image);
+            $img->save($image_path,100);
+            $reg->cnicB = $cnicB_path1;
+        }
+        $bCard_path1 = null;
+        if($req->hasFile('bCard')){
+
+            $image = $req->file('bCard');
+            $filename = $req->cnic.".".$image->getClientOriginalExtension();
+            $image_path = public_path('/files/bCard/'.$filename);
+            $bCard_path1 = '/files/bCard/'.$filename;
+            $img = Image::make($image);
+            $img->save($image_path,100);
+            $reg->bCard = $bCard_path1;
+        }
+        $bCardB_path1 = null;
+        if($req->hasFile('bCardB')){
+
+            $image = $req->file('bCardB');
+            $filename = $req->cnic.".".$image->getClientOriginalExtension();
+            $image_path = public_path('/files/bCardB/'.$filename);
+            $bCardB_path1 = '/files/bCardB/'.$filename;
+            $img = Image::make($image);
+            $img->save($image_path,100);
+            $reg->bCardB = $bCardB_path1;
+        }
+        $license_path1 = null;
+        if ($req->hasFile('license')) {
+            $pdf = $req->file('license');
+            $filename = $req->cnic . "." . $pdf->getClientOriginalExtension(); // Use the extension of the uploaded PDF
+            $pdf_path = public_path('/files/license/' . $filename);
+            $license_path1 = '/files/license/' . $filename;
+
+            // Instead of using an image manipulation library, move the PDF file to the specified location.
+            $pdf->move(public_path('/files/license/'), $filename);
+            $reg->licenses = $license_path1;
+        }
+        $reg->isFinal = "no";
+        $reg->assigned = 2;
+        $reg->status = "Pending";
+        $reg->save();
+
+        tracking::create(
+            [
+                'appID' => $reg->id,
+                'from' => 1,
+                'to' => 2,
+                'date' => now(),
+                'notes' => "Resubmitted",
+            ]
+        );
+
+        return redirect("/")->with('msg', "Registration form submitted for approval");
     }
 }

@@ -56,21 +56,21 @@
                                     <p>Application form for (ILF) Membership</p>
 
                                 </div>
-                                <form action="{{url('/registration/store')}}" method="post" enctype="multipart/form-data">
+                                <form action="{{url('/registration/update')}}" method="post" enctype="multipart/form-data">
                                     @csrf
-
+                                    <input type="hidden" name="id" value="{{$reg->id}}">
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="name">Name</label>
-                                                <input type="text" class="form-control" required id="name" name="name">
+                                                <input type="text" class="form-control" required value="{{$reg->name}}" id="name" name="name">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="fname">Father Name</label>
-                                                <input type="text" class="form-control" required id="fname" name="fname">
+                                                <input type="text" class="form-control" required value="{{$reg->fname}}" id="fname" name="fname">
                                             </div>
                                         </div>
                                     </div>
@@ -78,15 +78,15 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="cnic">CNIC Number (Without Dashes)</label>
-                                                <input type="text" class="form-control" required maxlength="13" id="cnic" name="cnic">
+                                                <input type="text" class="form-control" required maxlength="13" value="{{$reg->cnic}}" id="cnic" name="cnic">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="gender">Gender</label>
                                                 <select class="form-select" required name="gender" id="gender">
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
+                                                    <option value="Male" {{$reg->gender == "Male" ? "Selected" : ""}}>Male</option>
+                                                    <option value="Female" {{$reg->gender == "Female" ? "Selected" : ""}}>Female</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -95,13 +95,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="dist">District</label>
-                                                <input type="text" class="form-control" required id="dist" name="dist">
+                                                <input type="text" class="form-control" value="{{$reg->dist}}" required id="dist" name="dist">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="dob">Date of Birth</label>
-                                                <input type="date" class="form-control" required id="dob" name="dob">
+                                                <input type="date" class="form-control" value="{{date("Y-m-d", strtotime($reg->dob))}}" required id="dob" name="dob">
                                             </div>
                                         </div>
                                     </div>
@@ -112,19 +112,19 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="lc">L.C</label>
-                                                <input type="date" class="form-control" required id="lc" name="lc">
+                                                <input type="date" class="form-control" value="{{date("Y-m-d", strtotime($reg->lc))}}" required id="lc" name="lc">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="hc">H.C</label>
-                                                <input type="date" class="form-control" id="hc" name="hc">
+                                                <input type="date" class="form-control" value="{{date("Y-m-d", strtotime($reg->hc))}}" id="hc" name="hc">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="sc">S.C</label>
-                                                <input type="date" class="form-control" id="sc" name="sc">
+                                                <input type="date" class="form-control" value="{{date("Y-m-d", strtotime($reg->sc))}}" id="sc" name="sc">
                                             </div>
                                         </div>
                                     </div>
@@ -132,115 +132,90 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="barReg">Bar Registration Number</label>
-                                                <input type="text" class="form-control" required id="barReg" name="barReg">
+                                                <input type="text" class="form-control" value="{{$reg->barReg}}" required id="barReg" name="barReg">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="since">Since Member of ILM</label>
-                                                <input type="date" class="form-control" required id="since" name="since">
+                                                <input type="date" class="form-control" value="{{date("Y-m-d", strtotime($reg->since))}}" required id="since" name="since">
                                             </div>
                                         </div>
                                         <div class="col-md-6 mt-2">
                                             <div class="form-group">
                                                 <label for="phone">Phone Number</label>
-                                                <input type="text" class="form-control" required id="phone" name="phone">
+                                                <input type="text" class="form-control" value="{{$reg->phone}}" required id="phone" name="phone">
                                             </div>
                                         </div>
                                         <div class="col-md-6 mt-2">
                                             <div class="form-group">
                                                 <label for="email">Email Address</label>
-                                                <input type="email" class="form-control" id="email" name="email">
+                                                <input type="email" class="form-control" value="{{$reg->email}}" id="email" name="email">
                                             </div>
                                         </div>
                                         <div class="col-md-6 mt-2">
                                             <div class="form-group">
                                                 <label for="addr">Office Address</label>
-                                                <input type="text" class="form-control" required id="addr" name="addr">
+                                                <input type="text" class="form-control" value="{{$reg->addr}}" required id="addr" name="addr">
                                             </div>
                                         </div>
-                                        <div class="col-md-6 mt-2">
+                                       {{--  <div class="col-md-6 mt-2">
                                             <div class="form-group">
                                                 <label for="password">Password</label>
                                                 <input type="password" class="form-control" required id="password" name="password">
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-4 mt-2">
+                                            <img id="photoPreview" src="{{asset($reg->photo)}}" alt="Image Preview" style="width: 150px; height: 200px;">
                                             <div class="form-group">
                                                 <label for="photo">Passport Size Image</label>
                                                 <input type="file" id="photo" name="photo" class="form-control" accept="image/*">
+                                                * Fresh Photograph with blue background
                                             </div>
                                         </div>
                                         <div class="col-md-4 mt-2">
-                                            <img id="photoPreview" src="#" alt="Image Preview" style="display: none; max-width: 150px; max-height: 150px;">
-                                        </div>
-                                        <div class="col-md-4 mt-2">
-                                            * Fresh Photograph with blue background
-                                        </div>
-                                        <div class="col-md-4 mt-2">
+                                            <img id="cnicFPreview" src="{{asset($reg->cnicF)}}" alt="Image Preview" style="width: 300px; height: 200px;">
                                             <div class="form-group">
                                                 <label for="cnicF">CNIC Front</label>
                                                 <input type="file" id="cnicF" name="cnicF" class="form-control" accept="image/*">
+                                                * Must be a clear/readable image
                                             </div>
                                         </div>
+                                        
                                         <div class="col-md-4 mt-2">
-                                            <img id="cnicFPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
-                                        </div>
-                                        <div class="col-md-4 mt-2">
-                                            * Must be a clear/readable image
-                                        </div>
-                                        <div class="col-md-4 mt-2">
+                                            <img id="cnicBPreview" src="{{asset($reg->cnicB)}}" alt="Image Preview" style="width: 300px; height: 200px;">
                                             <div class="form-group">
                                                 <label for="cnicB">CNIC Back</label>
                                                 <input type="file" id="cnicB" name="cnicB" class="form-control" accept="image/*">
+                                                * Must be a clear/readable image
                                             </div>
                                         </div>
                                         <div class="col-md-4 mt-2">
-                                            <img id="cnicBPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
-                                        </div>
-                                        <div class="col-md-4 mt-2">
-                                            * Must be a clear/readable image
-                                        </div>
-                                        <div class="col-md-4 mt-2">
+                                            <img id="bCardPreview" src="{{asset($reg->bCard)}}" alt="Image Preview" style="width: 300px; height: 200px;">
                                             <div class="form-group">
                                                 <label for="bCard">Bar Council Card (Front)</label>
                                                 <input type="file" id="bCard" name="bCard" class="form-control" accept="image/*">
+                                                * Must be a clear/readable image
                                             </div>
                                         </div>
                                         <div class="col-md-4 mt-2">
-                                            <img id="bCardPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
-                                        </div>
-                                        <div class="col-md-4 mt-2">
-                                            * Must be a clear/readable image
-                                        </div>
-                                        <div class="col-md-4 mt-2">
+                                            <img id="bCardBPreview" src="{{asset($reg->bCardB)}}" alt="Image Preview" style="width: 300px; height: 200px;">
                                             <div class="form-group">
                                                 <label for="bCard">Bar Council Card (Back)</label>
                                                 <input type="file" id="bCardB" name="bCardB" class="form-control" accept="image/*">
+                                                * Must be a clear/readable image
                                             </div>
                                         </div>
                                         <div class="col-md-4 mt-2">
-                                            <img id="bCardBPreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 100px;">
-                                        </div>
-                                        <div class="col-md-4 mt-2">
-                                            * Must be a clear/readable image
-                                        </div>
-                                        <div class="col-md-4 mt-2">
+                                            <embed id="licensePreview" src="{{asset($reg->licenses)}}" alt="Image Preview" style="width: 300px; height: 200px;">
                                             <div class="form-group">
                                                 <label for="license">Licenses</label>
                                                 <input type="file" id="license" name="license" class="form-control" accept=".pdf">
+                                                * Upload a PDF file. If you want to upload more than one license, combine all the license documents into a single PDF
                                             </div>
                                         </div>
-
-                                        <div class="col-md-4 mt-2">
-                                            <embed id="licensePreview" src="#" alt="Image Preview" style="display: none; max-width: 300px; max-height: 400px;">
-                                        </div>
-                                        <div class="col-md-4 mt-2">
-                                            * Upload a PDF file. If you want to upload more than one license, combine all the license documents into a single PDF
-                                        </div>
-
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-9">
@@ -253,7 +228,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
 
-                                                <button type="submit" class="btn btn-success">Apply for Registration</button>
+                                                <button type="submit" class="btn btn-success">Re-Submit Form</button>
                                             </div>
                                         </div>
                                     </div>

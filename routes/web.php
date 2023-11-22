@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [RegistrationController::class, 'tracking']);
 Route::get('/registration/create', [RegistrationController::class, 'registration']);
 Route::post('/registration/store', [RegistrationController::class, 'store']);
+Route::post('/registration/update', [RegistrationController::class, 'update']);
 Route::get('/registeration/track/search/{cnic}', [RegistrationController::class, 'trackingSearch']);
 Route::post('/registeration/edit/', [RegistrationController::class, 'verifyPassword']);
 Route::get('/admin', [authController::class, 'signin'])->name('login');
