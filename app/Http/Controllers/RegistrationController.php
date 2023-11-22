@@ -7,6 +7,7 @@ use App\Models\registration;
 use App\Models\tracking;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Image;
 class RegistrationController extends Controller
 {
@@ -104,6 +105,7 @@ class RegistrationController extends Controller
                 'bCardB' => $bCardB_path1,
                 'licenses' => $license_path1,
                 'isFinal' => "no",
+                'password' => Hash::make($req->password),
                 'assigned' => 2,
                 'status' => "Pending",
                 'date' => now(),
@@ -227,6 +229,12 @@ class RegistrationController extends Controller
                         $data .= '<h6>Notes</h6>';
                         $data .= '<p>'.$notes.'</p>';
                     $data .= '</div>';
+                    if($status == "Rejected")
+                    {
+                        $data .= '<div class="col-md-3">';
+                        $data .= '<button id="edit" class="btn btn-primary" onclick="confirmPassowrd('.$reg->id.')" >Edit Form</button>';
+                        $data .= '</div>';
+                    }
                 $data .= '</div>';
             $data .= '</div>';
         $data .= '</div>';
@@ -251,5 +259,18 @@ class RegistrationController extends Controller
         $reg->save();
 
         return redirect('/dashboard')->with("msg", "Registration Re-approved and moved to approved list");
+    }
+
+    public function verifyPassword(request $req)
+    {
+        $reg = registration::find($req->id);
+        $password = hash::check($req->password, $reg->password);
+        
+        if($password)
+        {
+            return view('edit', compact('reg'));
+        }
+
+        return back()->with('error', 'Invalid Password');
     }
 }

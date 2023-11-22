@@ -35,6 +35,7 @@ Route::get('/', [RegistrationController::class, 'tracking']);
 Route::get('/registration/create', [RegistrationController::class, 'registration']);
 Route::post('/registration/store', [RegistrationController::class, 'store']);
 Route::get('/registeration/track/search/{cnic}', [RegistrationController::class, 'trackingSearch']);
+Route::post('/registeration/edit/', [RegistrationController::class, 'verifyPassword']);
 Route::get('/admin', [authController::class, 'signin'])->name('login');
 Route::post('/admin', [authController::class, 'attempt_signin']);
 Route::get('/test', [settingsController::class, 'test']);

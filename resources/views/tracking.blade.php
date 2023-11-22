@@ -28,6 +28,9 @@
     <link rel="stylesheet" href="{{ asset('assets/src/plugins/src/notification/snackbar/snackbar.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/src/plugins/css/dark/notification/snackbar/custom-snackbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/src/plugins/css/light/notification/snackbar/custom-snackbar.css') }}">
+
+    <link rel="stylesheet" href="{{asset('assets/src/assets/css/dark/components/modal.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/src/assets/css/light/components/modal.css')}}">
     <!-- END GLOBAL MANDATORY STYLES -->
 
 </head>
@@ -96,6 +99,31 @@
         </div>
 
     </div>
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Password Verification</h5>
+          
+        </div>
+        <form action="{{url("/registeration/edit/")}}" method="post">
+        <div class="modal-body">
+            @csrf
+            <input type="hidden" name="id" id="form-id">
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" required class="form-control">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Continue</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script src="{{ asset('assets/src/plugins/src/jquery-ui/jquery.min.js') }}"></script>
@@ -140,6 +168,11 @@
         });
     });
 
+    function confirmPassowrd(id)
+    {
+        $("#form-id").val(id);
+        $("#exampleModal").modal('show');
+    }
 </script>
 </body>
 </html>
