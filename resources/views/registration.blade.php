@@ -252,15 +252,14 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-
-                                                <button type="submit" class="btn btn-success">Apply for Registration</button>
+                                                <button type="submit" id="submitBtn" class="btn btn-success">Apply for Registration</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                             </form>
-                               
+
 
                             </div>
 
@@ -313,6 +312,10 @@
 </script>
 @endif
 <script>
+    document.getElementById('submitBtn').addEventListener('click', function() {
+        this.setAttribute('disabled', 'true');
+        this.form.submit();
+    });
     $(document).ready(function () {
     // Listen for changes in the file input
     $("#photo").change(function () {

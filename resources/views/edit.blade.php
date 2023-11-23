@@ -183,7 +183,7 @@
                                                 * Must be a clear/readable image
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-md-4 mt-2">
                                             <img id="cnicBPreview" src="{{asset($reg->cnicB)}}" alt="Image Preview" style="width: 300px; height: 200px;">
                                             <div class="form-group">
@@ -228,14 +228,14 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
 
-                                                <button type="submit" class="btn btn-success">Re-Submit Form</button>
+                                                <button type="submit" id="submitBtn" class="btn btn-success">Re-Submit Form</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                             </form>
-                               
+
 
                             </div>
 
@@ -395,7 +395,10 @@
         }
     });
 });
-
+document.getElementById('submitBtn').addEventListener('click', function() {
+        this.setAttribute('disabled', 'true');
+        this.form.submit();
+    });
 </script>
 </body>
 </html>
