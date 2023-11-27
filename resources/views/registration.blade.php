@@ -52,13 +52,11 @@
                             <div class="row">
                                 <div class="col-md-12 mb-3">
 
-                                    <h2>Insaf Lawyers Forum Balochistan (ILF)</h2>
+                                    <h2><a href="https://insaflawyersforum.pk/">Insaf Lawyers Forum Balochistan (ILF)</a></h2>
                                     <p>Application form for (ILF) Membership</p>
-
                                 </div>
-                                <form action="{{url('/registration/store')}}" method="post" enctype="multipart/form-data">
+                                <form action="{{url('/registration/store')}}" method="post" id="registrationForm" enctype="multipart/form-data">
                                     @csrf
-
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -138,7 +136,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="since">Since Member of ILM</label>
-                                                <input type="date" class="form-control" required id="since" name="since">
+                                                <input type="date" class="form-control" id="since" name="since">
                                             </div>
                                         </div>
                                         <div class="col-md-6 mt-2">
@@ -312,9 +310,9 @@
 </script>
 @endif
 <script>
-    document.getElementById('submitBtn').addEventListener('click', function() {
-        this.setAttribute('disabled', 'true');
-        this.form.submit();
+   document.getElementById('registrationForm').addEventListener('submit', function() {
+        // Disable the submit button to prevent multiple submissions
+        document.getElementById('submitBtn').setAttribute('disabled', 'true');
     });
     $(document).ready(function () {
     // Listen for changes in the file input

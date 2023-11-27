@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('lc')->nullable();
             $table->date('hc')->nullable();
             $table->date('sc')->nullable();
-            $table->date('since');
+            $table->date('since')->nullable();
             $table->string('barReg');
             $table->string('phone');
             $table->string('email')->nullable();

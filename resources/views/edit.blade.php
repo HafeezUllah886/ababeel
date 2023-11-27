@@ -52,7 +52,7 @@
                             <div class="row">
                                 <div class="col-md-12 mb-3">
 
-                                    <h2>Insaf Lawyers Forum Balochistan (ILF)</h2>
+                                    <h2><a href="https://insaflawyersforum.pk/">Insaf Lawyers Forum Balochistan (ILF)</a></h2>
                                     <p>Application form for (ILF) Membership</p>
 
                                 </div>
@@ -138,7 +138,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="since">Since Member of ILM</label>
-                                                <input type="date" class="form-control" value="{{date("Y-m-d", strtotime($reg->since))}}" required id="since" name="since">
+                                                <input type="date" class="form-control" value="{{date("Y-m-d", strtotime($reg->since))}}" id="since" name="since">
                                             </div>
                                         </div>
                                         <div class="col-md-6 mt-2">
@@ -227,7 +227,6 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-
                                                 <button type="submit" id="submitBtn" class="btn btn-success">Re-Submit Form</button>
                                             </div>
                                         </div>
